@@ -1,3 +1,5 @@
-# GHFoundation
+# FoundationX
 
-A description of this package.
+A library for swift extensions and effective codes.
+
+
