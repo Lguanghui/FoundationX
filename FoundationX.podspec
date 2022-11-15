@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "FoundationX"
-  spec.version      = "0.0.4"
+  spec.version      = "0.0.5"
   spec.summary      = "A library for swift extensions and effective codes."
   spec.swift_version = '5.0'
 
