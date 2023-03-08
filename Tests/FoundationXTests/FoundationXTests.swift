@@ -16,4 +16,8 @@ final class GHFoundationTests: XCTestCase {
     @objc func lockFunc() {
         
     }
+    
+    func testLogger() throws {
+        Logger.printMessage("Logger")
+    }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Optional String + Empty
-extension Swift.Optional where Wrapped == String {
+public extension Swift.Optional where Wrapped == String {
     
     /// Get whether  this `Optional String` instance  is nil or an empty String.
     ///
@@ -37,7 +37,7 @@ extension Swift.Optional where Wrapped == String {
 }
 
 // MARK: - Optional Array + Empty
-extension Swift.Optional where Wrapped == Array<Any> {
+public extension Swift.Optional where Wrapped == Array<Any> {
     
     /// Get whether  this `Optional Array<Any>`  is nil or an empty String.
     ///

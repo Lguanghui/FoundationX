@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Encodable {
+public extension Encodable {
     /// convert Encodable object to dictionary
     var dictionary: [String: Any]? {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
