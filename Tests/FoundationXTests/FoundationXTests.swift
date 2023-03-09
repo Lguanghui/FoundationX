@@ -1,5 +1,6 @@
 import XCTest
 @testable import FoundationX
+@testable import FoundationX_Objc
 
 final class GHFoundationTests: XCTestCase {
     func testExample() throws {
@@ -7,10 +8,10 @@ final class GHFoundationTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         XCTAssertEqual(FoundationX().text, "Hello, World!")
-        methodLock(object: self, selector: #selector(lockFunc))
-        print(methodIsLocked(object: self, selector: #selector(lockFunc)))
-        methodUnlock(object: self, selector: #selector(lockFunc))
-        print(methodIsLocked(object: self, selector: #selector(lockFunc)))
+        XMethodLock(self, #selector(lockFunc))
+        print(XMethodIsLocked(self, #selector(lockFunc)))
+        XMethodUnlock(self, #selector(lockFunc))
+        print(XMethodIsLocked(self, #selector(lockFunc)))
     }
     
     @objc func lockFunc() {
@@ -18,8 +19,8 @@ final class GHFoundationTests: XCTestCase {
     }
     
     func testLogger() throws {
-        Logger.printMessage("Hello!", "Logger")
+        XLogger.printMessage("Hello!", "Logger")
         let obj = NSObject()
-        Logger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
+        XLogger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
     }
 }

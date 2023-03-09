@@ -11,7 +11,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "FoundationX",
-            targets: ["FoundationX"]),
+            targets: ["FoundationX", "FoundationX_Objc"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,8 +21,18 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
+            name: "FoundationX_Objc",
+            dependencies: [],
+            publicHeadersPath: "include",
+            cSettings: [.headerSearchPath(".")],
+            cxxSettings: [.headerSearchPath(".")]
+        ),
+        .target(
             name: "FoundationX",
-            dependencies: []),
+            dependencies: ["FoundationX_Objc"],
+            path: "Sources/FoundationX",
+            swiftSettings: [.define("SPM_MODE")]
+        ),
         .testTarget(
             name: "FoundationXTests",
             dependencies: ["FoundationX"]),

@@ -1,5 +1,6 @@
 import PlaygroundSupport
 import FoundationX
+import FoundationX_Objc
 import Foundation
 
 PlaygroundPage.current.needsIndefiniteExecution = true
@@ -12,11 +13,11 @@ class TestClass {
 
 let test = TestClass()
 
-methodLock(object: test, selector: #selector(TestClass.lockFunc))
+XMethodLock(test, #selector(TestClass.lockFunc))
 
-print(methodIsLocked(object: test, selector: #selector(TestClass.lockFunc)))
+print(XMethodIsLocked(test, #selector(TestClass.lockFunc)))
 
-methodUnlock(object: test, selector: #selector(TestClass.lockFunc))
+XMethodUnlock(test, #selector(TestClass.lockFunc))
 
-print(methodIsLocked(object: test, selector: #selector(TestClass.lockFunc)))
+print(XMethodIsLocked(test, #selector(TestClass.lockFunc)))
 

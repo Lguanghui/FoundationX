@@ -8,7 +8,11 @@
 
 import Foundation
 
-open class Logger {
+#if SPM_MODE
+import FoundationX_Objc
+#endif
+
+open class XLogger {
     
     /// Whether to print in DEBUG mode only. Default is `true`.
     public static var onlyDEBUG: Bool = true
@@ -32,6 +36,9 @@ open class Logger {
     }
     
     private static func _print(withFlags flags: [Any] = [], messages: String, pure: Bool) {
+        if (Self.onlyDEBUG && ProductionMacro()) {
+            return
+        }
         
         let dateString = dateFormatter.string(from: Date())
         let file: String = #file
@@ -54,7 +61,7 @@ open class Logger {
 
 // MARK: - Public
 
-public extension Logger {
+public extension XLogger {
     /// Print messages with **custom flags** at beginning.
     ///
     ///     Logger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags.")
@@ -62,8 +69,8 @@ public extension Logger {
     ///
     /// - Parameter flags: custom flags
     @discardableResult
-    static func withFlag(_ flags: Any...) -> Logger {
-        let logger = Logger(flags: flags)
+    static func withFlag(_ flags: Any...) -> XLogger {
+        let logger = XLogger(flags: flags)
         logger.flags = flags
         return logger
     }
