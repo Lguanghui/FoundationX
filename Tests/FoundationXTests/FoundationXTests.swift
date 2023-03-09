@@ -18,6 +18,8 @@ final class GHFoundationTests: XCTestCase {
     }
     
     func testLogger() throws {
-        Logger.printMessage("Logger")
+        Logger.printMessage("Hello!", "Logger")
+        let obj = NSObject()
+        Logger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
     }
 }
