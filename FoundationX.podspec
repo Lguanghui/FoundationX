@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "FoundationX"
   spec.version      = "0.1.1"
-  spec.summary      = "A library for swift extensions and effective codes."
+  spec.summary      = "A library for swift/objc effective codes. Use it to save your time."
   spec.swift_version = '5.0'
 
   # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-                      A library for swift extensions and effective codes.
+                      A library for swift/objc effective codes.
                    DESC
 
   spec.homepage     = "https://github.com/Lguanghui/FoundationX"
@@ -69,7 +69,7 @@ Pod::Spec.new do |spec|
   # spec.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  spec.ios.deployment_target = "13.0"
+  spec.ios.deployment_target = "11.0"
   spec.osx.deployment_target = "11.0"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
