@@ -26,6 +26,6 @@ jobs:
         FRAMEWORK_NAME: FoundationX
       run: |
         swift test --enable-code-coverage
-        xcrun llvm-cov export -format="lcov" .build/debug/{{ env.FRAMEWORK_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
+        xcrun llvm-cov export -format="lcov" .build/debug/${{ env.FRAMEWORK_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
