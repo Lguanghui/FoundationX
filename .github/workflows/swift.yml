@@ -28,4 +28,4 @@ jobs:
           bash <(curl https://codecov.io/bash) -f "coverage/*.info"
         shell: bash
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV }}
