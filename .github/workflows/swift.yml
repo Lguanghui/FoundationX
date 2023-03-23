@@ -16,9 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v --enable-code-coverage
+    - run: pip install requests
+    - name: Install xcode-install
+      run: gem install xcode-install
+    - name: Build and Test
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        CORRECT_COVERAGE: ${{ secrets.CORRECT_COVERAGE }}
+        FRAMEWORK_NAME: FoundationX
+      run: |
+        xcrun llvm-cov export -format="lcov" .build/debug/${{FRAMEWORK_NAME}}PackageTests.xctest/Contents/MacOS/${{FRAMEWORK_NAME}}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
+        curl -Os https://uploader.codecov.io/latest/macos/codecov
+        chmod +x codecov
+        ./codecov -t ${CODECOV_TOKEN}
+        python request.py
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
