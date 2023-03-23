@@ -19,13 +19,12 @@ jobs:
     - run: pip install requests
     - name: Install xcode-install
       run: gem install xcode-install
-    - name: Build and Test
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-        CORRECT_COVERAGE: ${{ secrets.CORRECT_COVERAGE }}
-        FRAMEWORK_NAME: FoundationX
-      run: |
-        swift test --enable-code-coverage
-        xcrun llvm-cov export -format="lcov" .build/debug/${{ env.FRAMEWORK_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
+    - name: Test
+      - run: swift test --enable-code-coverage
+      - uses: michaelhenry/swifty-code-coverage@v1.0.0
+        with:
+          build-path: .build
+          target: FoundationX.xctest
+          is-spm: true
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
