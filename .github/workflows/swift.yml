@@ -5,7 +5,7 @@ name: Swift
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" , "dev"]
   pull_request:
     branches: [ "master" ]
 
@@ -15,10 +15,17 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
+      - name: Test
+        uses: actions/checkout@v1
+      - run: swift test --enable-code-coverage
+      - uses: michaelhenry/swifty-code-coverage@v1.0.0
+        with:
+          build-path: .build
+          target: FoundationXPackageTests.xctest
+          is-spm: true
+      - name: Upload to Codecov
+        run: |
+          bash <(curl https://codecov.io/bash) -f "coverage/*.info"
+        shell: bash
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV }}
