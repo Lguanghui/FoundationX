@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 #if SPM_MODE
 import FoundationX_Objc
 #endif
@@ -16,6 +15,9 @@ open class XLogger {
     
     /// Whether to print in DEBUG mode only. Default is `true`.
     public static var onlyDEBUG: Bool = true
+    
+    /// Whether to print your personal message in a new line. Default is `true`.
+    public static var newLineMode: Bool = true
     
     init() { }
     
@@ -40,6 +42,11 @@ open class XLogger {
             return
         }
         
+        var flags: [Any] = flags
+        if newLineMode {
+            flags.insert("◎", at: 0)
+        }
+        
         let dateString = dateFormatter.string(from: Date())
         let file: String = #file
         let function: String = #function
@@ -47,14 +54,16 @@ open class XLogger {
         let extraMessage: String = pure ? "" : "\(dateString) - \(_sourceFileName(file)).\(function) [line \(line)]"
         
         let _flags: [Any] = flags.compactMap({ String(describing: $0)})
-        let compactFlagStr = _flags.reduce("") { partialResult, next in
+        var compactFlagStr = _flags.reduce("") { partialResult, next in
             return String(partialResult).isEmpty ? "\(next)" : "\(partialResult)" + " " + "\(next)"
         }
+        compactFlagStr = compactFlagStr.isEmpty == false ? compactFlagStr + " " : ""
         
-        if compactFlagStr.isEmpty {
-            print(extraMessage, messages)
+        if newLineMode {
+            print(compactFlagStr + extraMessage)
+            print("╰─>", messages)
         } else {
-            print(compactFlagStr, extraMessage, messages)
+            print(compactFlagStr + extraMessage, messages)
         }
     }
 }
