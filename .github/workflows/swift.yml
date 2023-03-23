@@ -15,16 +15,17 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - run: pip install requests
-    - name: Install xcode-install
-      run: gem install xcode-install
-    - name: Test
-      run: swift test --enable-code-coverage
-      uses: michaelhenry/swifty-code-coverage@v1.0.0
+      - name: Test
+        uses: actions/checkout@v1
+      - run: swift test --enable-code-coverage
+      - uses: michaelhenry/swifty-code-coverage@v1.0.0
         with:
           build-path: .build
-          target: FoundationX.xctest
+          target: GithubChecksPackageTests.xctest
           is-spm: true
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
+      - name: Upload to Codecov
+        run: |
+          bash <(curl https://codecov.io/bash) -f "coverage/*.info"
+        shell: bash
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
