@@ -25,7 +25,7 @@ jobs:
         CORRECT_COVERAGE: ${{ secrets.CORRECT_COVERAGE }}
         FRAMEWORK_NAME: FoundationX
       run: |
-        xcrun llvm-cov export -format="lcov" .build/debug/${{FRAMEWORK_NAME}}PackageTests.xctest/Contents/MacOS/${{FRAMEWORK_NAME}}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
+        xcrun llvm-cov export -format="lcov" .build/debug/${{ env.FRAMEWORK_NAME }}PackageTests.xctest/Contents/MacOS/${{ env.FRAMEWORK_NAME }}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
         curl -Os https://uploader.codecov.io/latest/macos/codecov
         chmod +x codecov
         ./codecov -t ${CODECOV_TOKEN}
