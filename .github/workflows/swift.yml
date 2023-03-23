@@ -25,6 +25,7 @@ jobs:
         CORRECT_COVERAGE: ${{ secrets.CORRECT_COVERAGE }}
         FRAMEWORK_NAME: FoundationX
       run: |
+        xcodebuild -scheme ${{ env.FRAMEWORK_NAME  }}  -sdk iphonesimulator -derivedDataPath Build/ -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES clean build test
         xcrun llvm-cov export -format="lcov" .build/debug/${{ env.FRAMEWORK_NAME }}PackageTests.xctest/Contents/MacOS/${{ env.FRAMEWORK_NAME }}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
         curl -Os https://uploader.codecov.io/latest/macos/codecov
         chmod +x codecov
