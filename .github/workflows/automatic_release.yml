@@ -23,6 +23,7 @@ jobs:
           uses: actions-js/push@master
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: 'master'
             message: 'chore(ci): auto update CHANGELOG.md ${date}'
             
   create_release:
