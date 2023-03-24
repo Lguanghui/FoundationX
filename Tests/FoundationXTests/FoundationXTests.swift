@@ -3,19 +3,24 @@ import XCTest
 @testable import FoundationX_Objc
 
 final class GHFoundationTests: XCTestCase {
-    func testExample() throws {
+    func testmMethodLock() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         XCTAssertEqual(FoundationX().text, "Hello, World!")
+        XCTAssert(lockFunc() != nil)
         XMethodLock(self, #selector(lockFunc))
-        print(XMethodIsLocked(self, #selector(lockFunc)))
+        XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
+        XCTAssert(lockFunc() == nil)
         XMethodUnlock(self, #selector(lockFunc))
-        print(XMethodIsLocked(self, #selector(lockFunc)))
+        XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
     }
     
-    @objc func lockFunc() {
-        
+    @objc func lockFunc() -> Any? {
+        if XMethodIsLocked(self, #selector(lockFunc)) {
+            return nil
+        }
+        return "called"
     }
     
     func testLogger() throws {
