@@ -16,6 +16,9 @@ jobs:
           run: |
             brew tap git-chglog/git-chglog
             brew install git-chglog
+        - name: Checkout Branch
+          run: |
+            git checkout -b ci-auto-changelog-patches
         - name: Generate CHANGELOG.md
           run: |
             git-chglog -o CHANGELOG.md
