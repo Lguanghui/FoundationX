@@ -18,7 +18,9 @@ jobs:
             brew install git-chglog
         - name: Checkout Branch
           run: |
-            git checkout -b ci-auto-changelog-patches
+            git config --global push.autoSetupRemote true
+            git checkout -b ci-auto-changelog
+            git push
         - name: Generate CHANGELOG.md
           run: |
             git-chglog -o CHANGELOG.md
