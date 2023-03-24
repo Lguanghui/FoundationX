@@ -10,6 +10,21 @@ on:
     branches: [ "master" ]
 
 jobs:
+  PodLint:
+    name: Cocoapods Lint
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Cocoapods
+        run: gem install cocoapods --no-document --quiet
+      
+      - name: Lint
+        run: |
+          set -o pipefail
+          pod lib lint --allow-warnings
+
   build:
 
     runs-on: macos-latest
