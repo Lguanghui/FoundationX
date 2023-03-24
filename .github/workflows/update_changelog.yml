@@ -19,7 +19,9 @@ jobs:
         - name: Checkout Branch
           run: |
             git config --global push.autoSetupRemote true
-            git checkout -b ci-auto-changelog
+            git push origin --delete ci-auto-changelog
+            LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+            git checkout -b ci-auto-changelog $LATEST_TAG
             git push
         - name: Generate CHANGELOG.md
           run: |
