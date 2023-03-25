@@ -11,6 +11,17 @@
 
 @import Foundation;
 
+// MARK: - API Visibility
+
+/// defalut public API
+#define PUBLIC_API __attribute__((visibility("default")))
+
+/// internal API
+#define INTERNAL_API __attribute__((visibility("internal")))
+
+/// hidden API
+#define HIDDEN_API __attribute__((visibility("hidden")))
+
 // MARK: - DLog
 
 #if DEBUG || TEST_DEBUG
