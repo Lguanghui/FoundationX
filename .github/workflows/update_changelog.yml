@@ -8,6 +8,7 @@ on:
 env:
   default_branch: master
   skip_generate_pr: false
+  head_branch: ci_pull_request
 
 jobs:
   update_changelog:
@@ -26,7 +27,12 @@ jobs:
             git fetch --all
             git checkout -b $default_branch origin/$default_branch
             git pull -r
-            git checkout -b pull_request
+            git checkout -b $head_branch
+        - name: Delete Remote Previous Head Branch for PR
+          run: |
+            if [[ `git ls-remote --heads origin $head_branch` ]]; then
+              git push origin --delete $head_branch
+            fi
         - name: Generate CHANGELOG.md
           run: |
             git-chglog -o CHANGELOG.md
