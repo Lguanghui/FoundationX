@@ -11,6 +11,31 @@
 
 @import Foundation;
 
+// MARK: - DLog
+
+#if DEBUG || TEST_DEBUG
+#    define DLog(fmt, ...) \
+        NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#    define DLog(fmt, ...)
+#endif
+
+// MARK: - Weak/Strong self
+
+/// typedef weak self
+#define XWeak(type) __weak __typeof(&*type) weak##type = type
+
+/// typedef strong self
+#define XStrong(type) __strong __typeof(&*type) type = weak##type
+
+// MARK: - Valid Check
+
+/// valid NSString check
+#define NSStringCheck(var) (ClassCheck(var, NSString) && (((NSString *)var).length > 0))
+
+/// valid NSArray check
+#define NSArrayCheck(var) (ClassCheck(var, NSArray) && (((NSArray *)var).count > 0))
+
 // MARK: - Environment
 
 #if (defined DEBUG) || TEST_DEBUG

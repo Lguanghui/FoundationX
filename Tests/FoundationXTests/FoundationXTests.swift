@@ -28,4 +28,12 @@ final class GHFoundationTests: XCTestCase {
         let obj = NSObject()
         XLogger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
     }
+    
+    func testMirror() throws {
+        var str: String? = ""
+        var _str: Any = str
+        XLogger.printMessage(Mirror.isOptional(any: _str))
+        let str_ = str!
+        XLogger.printMessage(Mirror.isOptional(any: str_))
+    }
 }
