@@ -1,6 +1,36 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.3.1"></a>
+## [0.3.1] - 2023-03-26
+
+<a name="0.2.5"></a>
+## [0.2.5] - 2023-03-25
+### Feat
+- **objc:** add weak/strong type macro, NSString/NSArray/NSDictionary valid check macro
+
+
+<a name="0.2.3"></a>
+## [0.2.3] - 2023-03-25
+
+<a name="0.2.2"></a>
+## [0.2.2] - 2023-03-24
+
+<a name="0.2.1"></a>
+## [0.2.1] - 2023-03-24
+
+<a name="0.2.0"></a>
+## [0.2.0] - 2023-03-24
+
+<a name="0.1.5"></a>
+## [0.1.5] - 2023-03-24
+
+<a name="0.1.4"></a>
+## [0.1.4] - 2023-03-24
+### Docs
+- **changelg:** add git-chglog config & generate CHANGELOG.md
+
 ### Feat
 - fix XMethodLock XCTest
 - Add pod lint within CI ([#3](yes/issues/3))
@@ -58,7 +88,15 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.1.3...HEAD
+[Unreleased]: yes/compare/0.3.1...HEAD
+[0.3.1]: yes/compare/0.2.5...0.3.1
+[0.2.5]: yes/compare/0.2.3...0.2.5
+[0.2.3]: yes/compare/0.2.2...0.2.3
+[0.2.2]: yes/compare/0.2.1...0.2.2
+[0.2.1]: yes/compare/0.2.0...0.2.1
+[0.2.0]: yes/compare/0.1.5...0.2.0
+[0.1.5]: yes/compare/0.1.4...0.1.5
+[0.1.4]: yes/compare/0.1.3...0.1.4
 [0.1.3]: yes/compare/0.1.2...0.1.3
 [0.1.2]: yes/compare/0.1.1...0.1.2
 [0.1.1]: yes/compare/0.1.0...0.1.1
