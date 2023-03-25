@@ -6,7 +6,7 @@ on:
       - "**"
 
 env:
-  default_branch: main
+  default_branch: master
   skip_generate_pr: false
 
 jobs:
