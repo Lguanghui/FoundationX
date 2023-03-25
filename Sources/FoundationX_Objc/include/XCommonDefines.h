@@ -11,6 +11,32 @@
 
 @import Foundation;
 
+// MARK: - Target
+
+#if TARGET_OS_OSX
+    #define X_MACOS 1
+#else
+    #define X_MACOS 0
+#endif
+
+#if TARGET_OS_IOS
+    #define X_IOS 1
+#else
+    #define X_IOS 0
+#endif
+
+#if TARGET_OS_TV
+    #define X_TV 1
+#else
+    #define X_TV 0
+#endif
+
+#if TARGET_OS_WATCH
+    #define X_WATCH 1
+#else
+    #define X_WATCH 0
+#endif
+
 // MARK: - API Visibility
 
 /// defalut public API
@@ -53,6 +79,17 @@
 #    define PRODUCTION 0
 #else
 #    define PRODUCTION 1
+#endif
+
+// MARK: - Async Safe
+
+#ifndef dispatch_main_async_safe
+#define dispatch_main_async_safe(block)               \
+    if (dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == dispatch_queue_get_label(dispatch_get_main_queue())) {                        \
+        block();                                          \
+    } else {                                              \
+        dispatch_async(dispatch_get_main_queue(), block); \
+    }
 #endif
 
 // MARK: - For Swift
