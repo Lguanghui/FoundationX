@@ -4,6 +4,6 @@
 
 [![codecov](https://codecov.io/gh/Lguanghui/FoundationX/branch/master/graph/badge.svg?token=PK0QQMTIWW)](https://codecov.io/gh/Lguanghui/FoundationX)
 
-A library for swift extensions and effective codes.
+A library for swift/objc extensions and effective codes. Enjoy using it.
 
 
