@@ -2,8 +2,8 @@
 ## [Unreleased]
 
 
-<a name="0.3.1"></a>
-## [0.3.1] - 2023-03-26
+<a name="0.3.2"></a>
+## [0.3.2] - 2023-03-26
 
 <a name="0.2.5"></a>
 ## [0.2.5] - 2023-03-25
@@ -88,8 +88,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.3.1...HEAD
-[0.3.1]: yes/compare/0.2.5...0.3.1
+[Unreleased]: yes/compare/0.3.2...HEAD
+[0.3.2]: yes/compare/0.2.5...0.3.2
 [0.2.5]: yes/compare/0.2.3...0.2.5
 [0.2.3]: yes/compare/0.2.2...0.2.3
 [0.2.2]: yes/compare/0.2.1...0.2.2
