@@ -21,8 +21,7 @@ jobs:
           git fetch --all
           RELEASE_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo $RELEASE_TAG
-          echo $RELEASE_TAG >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: "Create release"
         uses: "actions/github-script@v6"
