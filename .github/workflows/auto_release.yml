@@ -14,8 +14,11 @@ jobs:
     name: Create Release
     runs-on: macos-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: "Determine tag"
         run: |
+          git fetch --all
           RELEASE_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo $RELEASE_TAG >> $GITHUB_ENV
 
