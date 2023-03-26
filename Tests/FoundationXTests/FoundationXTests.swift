@@ -30,10 +30,16 @@ final class GHFoundationTests: XCTestCase {
     }
     
     func testMirror() throws {
-        var str: String? = ""
-        var _str: Any = str
+        let str: String? = ""
+        let _str: Any = str
         XLogger.printMessage(Mirror.isOptional(any: _str))
         let str_ = str!
         XLogger.printMessage(Mirror.isOptional(any: str_))
+    }
+    
+    func testThen() throws {
+        let _ = NSObject().then { objc in
+            XLogger.printMessage(objc)
+        }
     }
 }
