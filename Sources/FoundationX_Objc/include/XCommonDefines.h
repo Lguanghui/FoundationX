@@ -67,11 +67,16 @@
 
 // MARK: - Valid Check
 
+#define ClassCheck(var, className) ((var) && [(var) isKindOfClass:[className class]])
+
 /// valid NSString check
 #define NSStringCheck(var) (ClassCheck(var, NSString) && (((NSString *)var).length > 0))
 
 /// valid NSArray check
 #define NSArrayCheck(var) (ClassCheck(var, NSArray) && (((NSArray *)var).count > 0))
+
+/// valid NSDictionary check
+#define NSDictionaryCheck(var) (ClassCheck(var, NSDictionary) && (var.count > 0))
 
 // MARK: - Environment
 
