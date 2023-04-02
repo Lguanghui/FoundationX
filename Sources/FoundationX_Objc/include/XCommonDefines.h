@@ -97,6 +97,11 @@
     }
 #endif
 
+// MARK: - Screen
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
 // MARK: - For Swift
 NS_INLINE BOOL ProductionMacro(void) {
     return PRODUCTION;
