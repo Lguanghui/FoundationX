@@ -42,4 +42,9 @@ final class GHFoundationTests: XCTestCase {
             XLogger.printMessage(objc)
         }
     }
+    
+    func testArraySafe() throws {
+        let arr: [Int] = [0]
+        XLogger.printMessage(arr[safe: 100]) // output: nil
+    }
 }

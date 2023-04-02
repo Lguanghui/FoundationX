@@ -36,5 +36,8 @@ let package = Package(
         .testTarget(
             name: "FoundationXTests",
             dependencies: ["FoundationX"]),
+        .testTarget(
+            name: "FoundationXObjcTests",
+            dependencies: ["FoundationX"]),
     ]
 )
