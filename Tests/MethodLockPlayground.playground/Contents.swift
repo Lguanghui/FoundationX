@@ -7,7 +7,7 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 class TestClass {
     @objc func lockFunc() {
-        
+
     }
 }
 
@@ -20,4 +20,3 @@ print(XMethodIsLocked(test, #selector(TestClass.lockFunc)))
 XMethodUnlock(test, #selector(TestClass.lockFunc))
 
 print(XMethodIsLocked(test, #selector(TestClass.lockFunc)))
-

@@ -33,7 +33,7 @@ final class FoundationXTest_Optional: XCTestCase {
 //            // Put the code you want to measure the time of here.
 //        }
 //    }
-    
+
     func testOptional() throws {
         let str: String? = "123"
         XLogger.printMessage(str.isNilOrEmpty)

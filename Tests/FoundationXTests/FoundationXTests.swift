@@ -15,20 +15,20 @@ final class GHFoundationTests: XCTestCase {
         XMethodUnlock(self, #selector(lockFunc))
         XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
     }
-    
+
     @objc func lockFunc() -> Any? {
         if XMethodIsLocked(self, #selector(lockFunc)) {
             return nil
         }
         return "called"
     }
-    
+
     func testLogger() throws {
         XLogger.printMessage("Hello!", "Logger")
         let obj = NSObject()
         XLogger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
     }
-    
+
     func testMirror() throws {
         let str: String? = ""
         let _str: Any = str
@@ -36,9 +36,9 @@ final class GHFoundationTests: XCTestCase {
         let str_ = str!
         XLogger.printMessage(Mirror.isOptional(any: str_))
     }
-    
+
     func testThen() throws {
-        let _ = NSObject().then { objc in
+        _ = NSObject().then { objc in
             XLogger.printMessage(objc)
         }
     }
