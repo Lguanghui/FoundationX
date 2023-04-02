@@ -6,8 +6,6 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Lguanghui/FoundationX)
 
-![Cocoapods platforms](https://img.shields.io/cocoapods/p/FoundationX?color=99ffff)
-
 A library for swift/objc extensions and effective codes. Enjoy using it.
 
 
