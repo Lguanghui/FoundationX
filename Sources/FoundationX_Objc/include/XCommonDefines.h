@@ -39,7 +39,7 @@
 
 // MARK: - API Visibility
 
-/// defalut public API
+/// default public API
 #define PUBLIC_API __attribute__((visibility("default")))
 
 /// internal API

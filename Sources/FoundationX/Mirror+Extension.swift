@@ -7,7 +7,7 @@
 //
 
 public extension Mirror {
-    static func isOptional(any: Any) -> Bool {
+    static func isOptional(_ any: Any) -> Bool {
         guard let style = Mirror(reflecting: any).displayStyle,
             style == .optional else { return false }
         return true

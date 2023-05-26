@@ -32,9 +32,9 @@ final class GHFoundationTests: XCTestCase {
     func testMirror() throws {
         let str: String? = ""
         let _str: Any = str
-        XLogger.printMessage(Mirror.isOptional(any: _str))
+        XLogger.printMessage(Mirror.isOptional(_ any: _str))
         let str_ = str!
-        XLogger.printMessage(Mirror.isOptional(any: str_))
+        XLogger.printMessage(Mirror.isOptional(_ any: str_))
     }
 
     func testThen() throws {
