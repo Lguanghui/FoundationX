@@ -44,4 +44,14 @@
     DLog(@"%@", replacedScheme); // output: https://liangguanghui.site?test=true&hello=0
 }
 
+- (void)testBlockRun {
+    void (^block)(NSString * str) = ^(NSString * str) {
+        NSLog(@"%@", str);
+    };
+    
+    XBlock_exec(block, @"hello")
+    block = nil;
+    XBlock_exec(block, @"released")
+}
+
 @end

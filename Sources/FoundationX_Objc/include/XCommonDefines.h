@@ -67,6 +67,7 @@
 
 // MARK: - Valid Check
 
+/// valid Class check
 #define ClassCheck(var, className) ((var) && [(var) isKindOfClass:[className class]])
 
 /// valid NSString check
@@ -76,7 +77,7 @@
 #define NSArrayCheck(var) (ClassCheck(var, NSArray) && (((NSArray *)var).count > 0))
 
 /// valid NSDictionary check
-#define NSDictionaryCheck(var) (ClassCheck(var, NSDictionary) && (var.count > 0))
+#define NSDictionaryCheck(var) (ClassCheck(var, NSDictionary) && (((NSDictionary *)var).count > 0))
 
 // MARK: - Environment
 
@@ -99,8 +100,15 @@
 
 // MARK: - Screen
 
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define XScreenWidth [UIScreen mainScreen].bounds.size.width
+#define XScreenHeight [UIScreen mainScreen].bounds.size.height
+
+// MARK: - Block
+
+#define XBlock_exec(block, ...)      \
+    if (block) {                     \
+        block(__VA_ARGS__);          \
+    };
 
 // MARK: - For Swift
 NS_INLINE BOOL ProductionMacro(void) {
