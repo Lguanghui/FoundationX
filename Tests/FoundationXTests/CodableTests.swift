@@ -14,6 +14,12 @@ fileprivate struct TestModel: Codable {
     let name: String?
 }
 
+struct Model: Codable {
+    @DefaultTrue var bool: Bool
+    @DefaultEmptyString var emptyStr: String
+    var dict: [String: AnyCodable]
+}
+
 final class CodableTests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -48,6 +54,23 @@ final class CodableTests: XCTestCase {
         """
         let jsonData = Data(jsonString.utf8)
         if let model = try? JSONDecoder().decode(TestModel.self, from: jsonData) {
+            XLogger.printMessage(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
+        }
+    }
+    
+    func testCodable() throws {
+        let jsonString = """
+        {
+            "name": "Guanghui Liang",
+            "scheme": "https://liangguanghui.site",
+            "dict": {
+                "val": 1,
+                "name": "name"
+            }
+        }
+        """
+        let jsonData = Data(jsonString.utf8)
+        if let model = try? JSONDecoder().decode(Model.self, from: jsonData) {
             XLogger.printMessage(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
         }
     }
