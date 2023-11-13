@@ -1,0 +1,11 @@
+[tool.bumpversion]
+current_version = "0.3.3"
+commit = true
+tag = true
+tag_name = "{new_version}"
+message = "Use the Force, Luke. Bump version: {current_version} → {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "FoundationX.podspec"
+search = "{current_version}-SNAPSHOT"
+replace = "{new_version}-SNAPSHOT"
