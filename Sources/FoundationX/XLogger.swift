@@ -71,32 +71,17 @@ open class XLogger {
 // MARK: - Public
 
 public extension XLogger {
-    /// Print messages with **custom flags** at beginning.
-    ///
-    ///     Logger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags.")
-    ///     // it prints 🍎 🍊 2023-03-09 17:27:23 - Logger.swift._print(withFlags:messages:pure:) [line 36] This is a message with my custom flags.
-    ///
-    /// - Parameter flags: custom flags
-    @discardableResult
-    static func withFlag(_ flags: Any...) -> XLogger {
-        let logger = XLogger(flags: flags)
-        logger.flags = flags
-        return logger
-    }
-    
     /// Print messages in terminal.
+    ///
+    ///     XLogger.printMessage("This is a message with my custom flags.", ["🍎", "🍊"])
+    ///     // it will print:
+    ///     // 🍎 🍊 2023-03-09 17:27:23 - Logger.swift._print(withFlags:messages:pure:) [line 36] This is a message with my custom flags.
+    ///
     /// - Parameters:
     ///   - messages: your messages
+    ///   - flags: custom flags at printed message's beginning. Default is empty.
     ///   - pure: if `true`, some extra messages, like `#file`, `#function`, won't be printed. Default is `false`.
-    static func printMessage(_ messages: Any..., pure: Bool = false) {
-        Self._print(messages: messages.compactMap({ String(describing: $0) }).joined(separator: " "), pure: pure)
-    }
-    
-    /// Print messages in terminal.
-    /// - Parameters:
-    ///   - messages: your messages
-    ///   - pure: if `true`, some extra messages, like `#file`, `#function`, won't be printed. Default is `false`.
-    func printMessage(_ messages: Any..., pure: Bool = false) {
+    static func printMessage(_ messages: Any..., flags: [Any] = [], pure: Bool = false) {
         Self._print(withFlags: flags, messages: messages.compactMap({ String(describing: $0) }).joined(separator: " "), pure: pure)
     }
 }

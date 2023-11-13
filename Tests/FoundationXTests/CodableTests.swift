@@ -18,6 +18,7 @@ struct Model: Codable {
     @DefaultTrue var bool: Bool
     @DefaultEmptyString var emptyStr: String
     var dict: [String: AnyCodable]
+    var desc: AnyCodable
 }
 
 final class CodableTests: XCTestCase {
@@ -66,12 +67,44 @@ final class CodableTests: XCTestCase {
             "dict": {
                 "val": 1,
                 "name": "name"
-            }
+            },
+            "desc": null
         }
         """
         let jsonData = Data(jsonString.utf8)
+        let void: Void
         if let model = try? JSONDecoder().decode(Model.self, from: jsonData) {
-            XLogger.printMessage(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
+            XLogger.printMessage(model)
+            XLogger.printMessage(model.dict.rawValue)
+            XLogger.printMessage(model.desc.description)
+            XLogger.printMessage(AnyCodable(Void.self))
+            XLogger.printMessage(AnyCodable(void))
+        }
+    }
+    
+    func testEquatable() throws {
+        let dict: [String: AnyCodable] = [
+            "bool": true,
+            "int": AnyCodable(1 as Int),
+            "int8": AnyCodable(1 as Int8),
+            "int16": AnyCodable(16 as Int16),
+            "int32": AnyCodable(32 as Int32),
+            "int64": AnyCodable(64 as Int64),
+            "uint": AnyCodable(1 as UInt),
+            "uint16": AnyCodable(16 as UInt16),
+            "uint32": AnyCodable(32 as UInt32),
+            "uint64": AnyCodable(64 as UInt64),
+            "float": AnyCodable(0.1 as Float),
+            "double": AnyCodable(0.01 as Double),
+            "str": AnyCodable("str"),
+            "array": [AnyCodable(1), AnyCodable("1")],
+            "dict": ["1": AnyCodable("1")]
+        ]
+        
+        let dict2 = dict
+        
+        for key in dict.keys {
+            print(dict[key] == dict2[key])
         }
     }
 }

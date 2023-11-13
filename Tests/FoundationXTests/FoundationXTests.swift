@@ -25,7 +25,7 @@ final class GHFoundationTests: XCTestCase {
     func testLogger() throws {
         XLogger.printMessage("Hello!", "Logger")
         let obj = NSObject()
-        XLogger.withFlag("🍎", "🍊").printMessage("This is a message with my custom flags and my objc:", obj)
+        XLogger.printMessage("This is a message with my custom flags and my objc:", obj, flags: ["🍎", "🍊"])
     }
 
     func testMirror() throws {
