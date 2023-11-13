@@ -107,7 +107,7 @@ extension AnyCodable: ExpressibleByArrayLiteral {}
 extension AnyCodable: ExpressibleByDictionaryLiteral {}
 
 public extension Dictionary where Key == String, Value == AnyCodable {
-    /// 取出 [String : AnyCodable] 对应 [String : Any] 的值
+    /// get `[String : Any]` from `[String : AnyCodable]`
     var rawValue: [String: Any] {
         get {
             var dict = [String: Any]()
