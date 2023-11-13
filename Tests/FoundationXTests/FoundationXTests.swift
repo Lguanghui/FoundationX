@@ -7,7 +7,6 @@ final class GHFoundationTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(FoundationX().text, "Hello, World!")
         XCTAssert(lockFunc() != nil)
         XMethodLock(self, #selector(lockFunc))
         XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
