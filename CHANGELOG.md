@@ -2,8 +2,18 @@
 ## [Unreleased]
 
 
+<a name="0.5.0"></a>
+## [0.5.0] - 2023-11-14
+
 <a name="0.4.1"></a>
 ## [0.4.1] - 2023-11-13
+### Chore
+- **ci:** auto update CHANGELOG.md ([#10](yes/issues/10))
+
+### Fix
+- **test:** fix test error
+- **version:** fix bump version error
+
 
 <a name="0.4.0"></a>
 ## [0.4.0] - 2023-11-13
@@ -144,7 +154,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.4.1...HEAD
+[Unreleased]: yes/compare/0.5.0...HEAD
+[0.5.0]: yes/compare/0.4.1...0.5.0
 [0.4.1]: yes/compare/0.4.0...0.4.1
 [0.4.0]: yes/compare/0.3.3...0.4.0
 [0.3.3]: yes/compare/0.3.2...0.3.3
