@@ -2,8 +2,31 @@
 ## [Unreleased]
 
 
+<a name="0.4.1"></a>
+## [0.4.1] - 2023-11-13
+
 <a name="0.4.0"></a>
 ## [0.4.0] - 2023-11-13
+### Chore
+- **ci:** auto update CHANGELOG.md ([#7](yes/issues/7))
+- **version:** 修改版本管理配置
+
+### Feat
+- **Mirror:** rename API
+- **lint:** add Swiftlint support
+- **macro:** add safe block exec macro ([#9](yes/issues/9))
+- **macro:** add macro for getting screen width/height
+- **objc:** add Swizzle methods
+- **scheme:** add method for adding/replacing params within a NSString.
+- **swift:** Add extensions for Codable
+- **test:** add Codable tests
+
+### Feature
+- add DictionaryCheck macro
+
+### Fix
+- **test:** fix test error ([#8](yes/issues/8))
+
 
 <a name="0.3.3"></a>
 ## [0.3.3] - 2023-03-26
@@ -121,7 +144,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.4.0...HEAD
+[Unreleased]: yes/compare/0.4.1...HEAD
+[0.4.1]: yes/compare/0.4.0...0.4.1
 [0.4.0]: yes/compare/0.3.3...0.4.0
 [0.3.3]: yes/compare/0.3.2...0.3.3
 [0.3.2]: yes/compare/0.3.1...0.3.2
