@@ -8,20 +8,20 @@
 
 import Foundation
 
-/// 类通过实现该协议提供默认值
+/// Implement this protocol to supply a default value for Codable when decode failed.
 public protocol CodableDefaultValue {
     associatedtype Value: Codable
     static var defaultValue: Value { get }
 }
 
-/// 针对 Bool 的协议
+/// Default value protocol for `Bool`.
 public protocol BoolDefaultValue: CodableDefaultValue where Value == Bool { }
 
-//MARK: - CodableDefault 实现
+// MARK: - CodableDefault Implementation
 
-/// 解决 Codable 的某个 key 解码失败时（比如类型不匹配），导致全部解码失败的问题
+/// This propertyWrapper will Supply a default value for a Codable variable while decode failed due to mismatched type or null value.
 ///
-/// `@CodableDefault<TYPE> var property`，解码失败时会将 property 设置为 TYPE 定义的默认值
+/// `@CodableDefault<TYPE> var property`, when decoding fails, property will be set to the default value defined by `TYPE`.
 @propertyWrapper
 public struct CodableDefault<T: CodableDefaultValue>: Codable {
     
@@ -32,7 +32,6 @@ public struct CodableDefault<T: CodableDefaultValue>: Codable {
     }
     
     public init(from decoder: Decoder) throws {
-        // CodableDefault 是一个单值容器（对应某个属性）
         let container = try decoder.singleValueContainer()
         self.wrappedValue = (try? container.decode(T.Value.self)) ?? T.defaultValue
     }
@@ -42,13 +41,13 @@ public struct CodableDefault<T: CodableDefaultValue>: Codable {
     }
 }
 
-// MARK: - KeyedDecodingContainer 扩展
+// MARK: - KeyedDecodingContainer extensions
 
 public extension KeyedDecodingContainer {
     
-    /// CodableDefault 默认 decode 实现
+    /// Default decode implementation for `CodableDefault`.
     ///
-    /// 解决 Codable 的某个 key 不存在时解析失败的问题，如果 key 不存在，就使用 T 类型关联的默认值
+    /// When decode failed due to null value, it will turn to return a default value.
     func decode<T>(_ type: CodableDefault<T>.Type, forKey key: Key) throws -> CodableDefault<T> where T: CodableDefaultValue {
         if let val = try decodeIfPresent(type, forKey: key) {
             return val
@@ -56,17 +55,16 @@ public extension KeyedDecodingContainer {
         return CodableDefault(wrappedValue: T.defaultValue)
     }
     
-    /// 针对 Bool 的 decode 实现
+    /// Decode implementation for Bool.
     ///
-    /// 兼容了整型和字符串类型转换为 Bool
-    /// 1. 整数转 Bool, 0 对应 false, 其它为 true
-    /// 2. 字符串转 Bool, "true"/"false" 对应 true/false（大小写敏感）, 其它 bool 为 nil, 会走到 T.defaultValue
+    /// Compatible with integer and string type conversion to `Bool`.
+    /// - Convert integer to Bool, 0 corresponds to false, others are true.
+    /// - String to Bool, "true" / "false" corresponds to true / false (case sensitive), while other bools are nil and will go to `T.defaultValue`.
     func decode<T>(_ type: CodableDefault<T>.Type, forKey key: Key) throws -> CodableDefault<T> where T: BoolDefaultValue {
         do {
             let val = try decode(Bool.self, forKey: key)
             return CodableDefault(wrappedValue: val)
         } catch let err {
-            // 如果是因为类型不匹配 decode 失败，可以再尝试转换为 Int 和 String
             guard
                 let decodingErr = err as? DecodingError,
                 case .typeMismatch = decodingErr
@@ -89,30 +87,30 @@ public extension KeyedDecodingContainer {
     }
 }
 
-// MARK: - 常用的 wrapper
+// MARK: - Common wrappers
 
-/// 修饰 Bool 类型的变量，默认值为 true
+/// Decorate variables of Bool type, with a default value of `true`.
 public typealias DefaultTrue = CodableDefault<Bool.True>
 
-/// 修饰 Bool 类型的变量，默认值为 false
+/// Decorate variables of Bool type, with a default value of `false`.
 public typealias DefaultFalse = CodableDefault<Bool.False>
 
-/// 修饰 Int 类型的变量，默认值为 0
+/// Modifies a variable of type Int, with a default value of 0.
 public typealias DefaultIntZero = CodableDefault<Int.Zero>
 
-/// 修饰 Float 类型的变量，默认值为 0
+/// Decorate variables of type Float, with a default value of 0.
 public typealias DefaultFloatZero = CodableDefault<Float.Zero>
 
-/// 修饰 Double 类型的变量，默认值为 0
+/// Decorate variables of type Double, with a default value of 0.
 public typealias DefaultDoubleZero = CodableDefault<Double.Zero>
 
-/// 修饰 String 类型的变量，默认值为 ""
+/// Decorate a variable of type String, with a default value of `""`(empty string).
 public typealias DefaultEmptyString = CodableDefault<String.Empty>
 
-/// 修饰 Array 类型的变量，默认值为 []
+/// Decorate variables of type Array, with a default value of `[]`(empty array).
 public typealias DefaultEmptyArray<T> = CodableDefault<CodableEmptyArray<T>> where T: Codable
 
-/// 修饰 Dictionary 类型的变量，默认值为 [:]
+/// Decorate a variable of type Dictionary, with a default value of `[:]`(empty dictionary).
 public typealias DefaultEmptyDictionary<K, V> = CodableDefault<CodableEmptyDictionary<K, V>> where K: Codable & Hashable, V: Codable
 
 

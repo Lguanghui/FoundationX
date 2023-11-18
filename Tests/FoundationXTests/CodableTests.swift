@@ -83,6 +83,7 @@ final class CodableTests: XCTestCase {
     }
     
     func testEquatable() throws {
+        let void: Void
         let dict: [String: AnyCodable] = [
             "bool": true,
             "int": AnyCodable(1 as Int),
@@ -91,6 +92,7 @@ final class CodableTests: XCTestCase {
             "int32": AnyCodable(32 as Int32),
             "int64": AnyCodable(64 as Int64),
             "uint": AnyCodable(1 as UInt),
+            "uint8": AnyCodable(1 as UInt8),
             "uint16": AnyCodable(16 as UInt16),
             "uint32": AnyCodable(32 as UInt32),
             "uint64": AnyCodable(64 as UInt64),
@@ -98,10 +100,13 @@ final class CodableTests: XCTestCase {
             "double": AnyCodable(0.01 as Double),
             "str": AnyCodable("str"),
             "array": [AnyCodable(1), AnyCodable("1")],
-            "dict": ["1": AnyCodable("1")]
+            "dict": ["1": AnyCodable("1")],
+            "void": AnyCodable(void),
+            "diff": false
         ]
         
-        let dict2 = dict
+        var dict2 = dict
+        dict2["diff"] = "str"
         
         for key in dict.keys {
             print(dict[key] == dict2[key])
