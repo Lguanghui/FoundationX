@@ -63,3 +63,12 @@ public extension Swift.Optional where Wrapped == Array<Any> {
         return self?.isEmpty ?? true
     }
 }
+
+public extension Swift.Optional where Wrapped == Character {
+    var stringValue: String {
+        guard let self else {
+            return ""
+        }
+        return String(self)
+    }
+}

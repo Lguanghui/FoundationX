@@ -46,4 +46,13 @@ final class GHFoundationTests: XCTestCase {
         let arr: [Int] = [0]
         XLogger.printMessage(arr[safe: 100]) // output: nil
     }
+    
+    func testStringIndex() throws {
+        XCTAssertEqual("hello"[1], "e")
+        XCTAssertNil("world"[-1])
+        XCTAssertNotNil("world"[0])
+        XCTAssertEqual("world"[3].stringValue, "l")
+        XCTAssertEqual("world"[3]?.stringValue, "l")
+        XLogger.printMessage("world"[1].stringValue)
+    }
 }

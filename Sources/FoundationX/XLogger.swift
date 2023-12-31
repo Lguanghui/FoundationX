@@ -81,7 +81,7 @@ public extension XLogger {
     ///   - messages: your messages
     ///   - flags: custom flags at printed message's beginning. Default is empty.
     ///   - pure: if `true`, some extra messages, like `#file`, `#function`, won't be printed. Default is `false`.
-    static func printMessage(_ messages: Any..., flags: [Any] = [], pure: Bool = false) {
+    class func printMessage(_ messages: Any..., flags: [Any] = [], pure: Bool = false) {
         Self._print(withFlags: flags, messages: messages.compactMap({ String(describing: $0) }).joined(separator: " "), pure: pure)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
     subscript (_ index: Int) -> Character? {
-        guard isEmpty == false && index < count else {
+        guard isEmpty == false && index < count && index >= 0 else {
             return nil
         }
         return self[self.index(self.startIndex, offsetBy: index)]
