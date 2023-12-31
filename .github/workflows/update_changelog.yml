@@ -1,4 +1,4 @@
-name: Update CHANGELOG.md Automaticly
+name: Update CHANGELOG.md Automatically
 
 on:
   push:
@@ -17,6 +17,8 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v3
+        - name: Waiting for sync
+          run: sleep 20
         - name: Install git-chglog
           run: |
             brew tap git-chglog/git-chglog
