@@ -17,8 +17,6 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v3
-        - name: Waiting for sync
-          run: sleep 20
         - name: Install git-chglog
           run: |
             brew tap git-chglog/git-chglog
@@ -26,9 +24,11 @@ jobs:
         - name: Checkout Branch
           run: |
             git config --global push.autoSetupRemote true
+            git status
             git fetch --all
-            git checkout -b $default_branch origin/$default_branch
-            git pull -r
+            git pull origin master
+            # git checkout -b $default_branch origin/$default_branch
+            # git pull -r
             git checkout -b $head_branch
         - name: Delete Remote Previous Head Branch for PR
           run: |
