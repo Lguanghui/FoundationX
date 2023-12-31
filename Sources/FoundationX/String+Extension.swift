@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+public extension String {
+    subscript (_ index: Int) -> Character? {
+        guard isEmpty == false && index < count else {
+            return nil
+        }
+        return self[self.index(self.startIndex, offsetBy: index)]
+    }
+}
+
+public extension Character {
+    var stringValue: String {
+        return String(self)
+    }
+}
