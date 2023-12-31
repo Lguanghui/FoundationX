@@ -2,8 +2,21 @@
 ## [Unreleased]
 
 
+<a name="0.7.0"></a>
+## [0.7.0] - 2023-12-31
+
 <a name="0.6.0"></a>
 ## [0.6.0] - 2023-12-31
+### Chore
+- **ci:** auto update CHANGELOG.md ([#12](yes/issues/12))
+
+### Feat
+- **string:** Add String subscript for getting character of specific index.
+- **test:** add test cases.
+
+### Refactor
+- Remove test playground.
+
 
 <a name="0.5.0"></a>
 ## [0.5.0] - 2023-11-14
@@ -163,7 +176,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.6.0...HEAD
+[Unreleased]: yes/compare/0.7.0...HEAD
+[0.7.0]: yes/compare/0.6.0...0.7.0
 [0.6.0]: yes/compare/0.5.0...0.6.0
 [0.5.0]: yes/compare/0.4.1...0.5.0
 [0.4.1]: yes/compare/0.4.0...0.4.1
