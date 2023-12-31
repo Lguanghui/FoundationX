@@ -2,8 +2,17 @@
 ## [Unreleased]
 
 
+<a name="0.6.0"></a>
+## [0.6.0] - 2023-12-31
+
 <a name="0.5.0"></a>
 ## [0.5.0] - 2023-11-14
+### Chore
+- **ci:** auto update CHANGELOG.md ([#11](yes/issues/11))
+
+### Feat
+- **logger:** redefine XLogger's API.
+
 
 <a name="0.4.1"></a>
 ## [0.4.1] - 2023-11-13
@@ -154,7 +163,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.5.0...HEAD
+[Unreleased]: yes/compare/0.6.0...HEAD
+[0.6.0]: yes/compare/0.5.0...0.6.0
 [0.5.0]: yes/compare/0.4.1...0.5.0
 [0.4.1]: yes/compare/0.4.0...0.4.1
 [0.4.0]: yes/compare/0.3.3...0.4.0
