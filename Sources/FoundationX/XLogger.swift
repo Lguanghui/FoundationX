@@ -2,7 +2,7 @@
 //  Logger.swift
 //  FoundationX 
 // 
-//  Created by 梁光辉 on 2023/3/8.
+//  Created by Guanghui Liang on 2023/3/8.
 //  Copyright © 2023 Guanghui Liang. All rights reserved.
 //
 
