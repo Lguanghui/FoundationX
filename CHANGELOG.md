@@ -2,8 +2,17 @@
 ## [Unreleased]
 
 
+<a name="0.7.1"></a>
+## [0.7.1] - 2024-02-25
+
 <a name="0.7.0"></a>
 ## [0.7.0] - 2023-12-31
+### Chore
+- **ci:** auto update CHANGELOG.md ([#13](yes/issues/13))
+
+### Feat
+- **string:** Add extension for Optional<String> to quickly get the character of a specific index.
+
 
 <a name="0.6.0"></a>
 ## [0.6.0] - 2023-12-31
@@ -176,7 +185,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.7.0...HEAD
+[Unreleased]: yes/compare/0.7.1...HEAD
+[0.7.1]: yes/compare/0.7.0...0.7.1
 [0.7.0]: yes/compare/0.6.0...0.7.0
 [0.6.0]: yes/compare/0.5.0...0.6.0
 [0.5.0]: yes/compare/0.4.1...0.5.0
