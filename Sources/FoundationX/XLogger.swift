@@ -37,7 +37,7 @@ open class XLogger {
         return components.isEmpty ? "" : (components.last ?? "")
     }
     
-    private static func _print(withFlags flags: [Any] = [], messages: String, pure: Bool) {
+    private static func _print(withFlags flags: [Any] = [], messages: String, pure: Bool, function: String) {
         if (Self.onlyDEBUG && ProductionMacro()) {
             return
         }
@@ -49,7 +49,6 @@ open class XLogger {
         
         let dateString = dateFormatter.string(from: Date())
         let file: String = #file
-        let function: String = #function
         let line: Int = #line
         let extraMessage: String = pure ? "" : "\(dateString) - \(_sourceFileName(file)).\(function) [line \(line)]"
         
@@ -81,7 +80,7 @@ public extension XLogger {
     ///   - messages: your messages
     ///   - flags: custom flags at printed message's beginning. Default is empty.
     ///   - pure: if `true`, some extra messages, like `#file`, `#function`, won't be printed. Default is `false`.
-    class func printMessage(_ messages: Any..., flags: [Any] = [], pure: Bool = false) {
-        Self._print(withFlags: flags, messages: messages.compactMap({ String(describing: $0) }).joined(separator: " "), pure: pure)
+    class func printMessage(_ messages: Any..., flags: [Any] = [], pure: Bool = false, function: String = #function) {
+        Self._print(withFlags: flags, messages: messages.compactMap({ String(describing: $0) }).joined(separator: " "), pure: pure, function: function)
     }
 }
