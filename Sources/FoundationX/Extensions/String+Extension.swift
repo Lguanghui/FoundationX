@@ -22,3 +22,24 @@ public extension Character {
         return String(self)
     }
 }
+
+public extension String {
+    func urlAddComponents(from dict: [String: String]) -> String {
+        guard var components: URLComponents = URLComponents(string: self) else {
+            return self
+        }
+        
+        var queryItems = [URLQueryItem]()
+        for (key, value) in dict {
+            let item = URLQueryItem(name: key, value: value)
+            queryItems.append(item)
+        }
+        
+        if let originalItems = components.queryItems {
+            queryItems.append(contentsOf: originalItems)
+        }
+        
+        components.queryItems = queryItems
+        return components.url?.absoluteString ?? self
+    }
+}
