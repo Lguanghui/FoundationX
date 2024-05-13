@@ -8,7 +8,8 @@
 
 import Foundation
 
-@available(macOS 10.7, *)
+#if os(macOS)
+
 public extension URL {
     
     func saveBookmarkData(for key: String) {
@@ -38,3 +39,4 @@ public extension URL {
     }
 }
 
+#endif
