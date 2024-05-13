@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(macOS 10.7, *)
 public extension URL {
     
     func saveBookmarkData(for key: String) {
