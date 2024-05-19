@@ -2,8 +2,21 @@
 ## [Unreleased]
 
 
+<a name="0.8.0"></a>
+## [0.8.0] - 2024-05-19
+
 <a name="0.7.1"></a>
 ## [0.7.1] - 2024-02-25
+### Chore
+- **ci:** auto update CHANGELOG.md ([#15](yes/issues/15))
+
+### Feat
+- Add DispatchOnce extension for DispatchQueue.
+- Add Value Enum.
+
+### Refactor
+- Move some files.
+
 
 <a name="0.7.0"></a>
 ## [0.7.0] - 2023-12-31
@@ -185,7 +198,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.7.1...HEAD
+[Unreleased]: yes/compare/0.8.0...HEAD
+[0.8.0]: yes/compare/0.7.1...0.8.0
 [0.7.1]: yes/compare/0.7.0...0.7.1
 [0.7.0]: yes/compare/0.6.0...0.7.0
 [0.6.0]: yes/compare/0.5.0...0.6.0
