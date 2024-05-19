@@ -12,6 +12,8 @@ import Foundation
 
 public extension URL {
     
+    /// Save the URL bookmark data with a specific key to access the file/folder.
+    /// - Parameter key: UserDefaults key.
     func saveBookmarkData(for key: String) {
         do {
             let bookmarkData = try self.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
@@ -21,6 +23,9 @@ public extension URL {
         }
     }
 
+    /// Restore the file/folder access from the bookmark data.
+    /// - Parameter key: UserDefaults key of the saved bookmark data.
+    /// - Returns: `True` if success, `False` otherwise.
     static func restoreFileAccess(key: String) -> Bool {
         do {
             if let bookmark = UserDefaults.standard.object(forKey: key) as? Data {

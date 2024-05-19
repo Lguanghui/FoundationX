@@ -55,4 +55,21 @@ final class GHFoundationTests: XCTestCase {
         XCTAssertEqual("world"[3]?.stringValue, "l")
         XLogger.printMessage("world"[1].stringValue)
     }
+    
+    func testTrim() throws {
+        let str = "\n Hello   \n"
+        let trimmed = str.trimWhitespacesAndNewlines()
+        XCTAssertEqual(trimmed, "Hello")
+    }
+    
+    func testCharacter() throws {
+        let str = "Hello"
+        let chr = str[2]
+        XCTAssertEqual(chr, Character("l"))
+    }
+    
+    func testCharacterConvert() throws {
+        let chr: String = Character("H").stringValue
+        XCTAssertEqual(chr, "H")
+    }
 }
