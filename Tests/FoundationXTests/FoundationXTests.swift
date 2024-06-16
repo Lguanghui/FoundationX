@@ -75,7 +75,12 @@ final class GHFoundationTests: XCTestCase {
     
     func testDeviceManager() throws {
         #if os(macOS)
-        XLogger.printMessage(DeviceManager.shared.macAddresses, DeviceManager.shared.serialNumber)
+        XLogger.printMessage(DeviceManager.shared.macAddresses, 
+                             DeviceManager.shared.serialNumber,
+                             DeviceManager.shared.appVsersion,
+                             DeviceManager.shared.buildNumber,
+                             DeviceManager.shared.systemVersion
+        )
         XCTAssertTrue(DeviceManager.shared.macAddresses.count > 0)
         XCTAssertTrue(DeviceManager.shared.serialNumber.count > 0)
         #endif

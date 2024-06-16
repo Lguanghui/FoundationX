@@ -36,6 +36,6 @@ public final class DeviceManager {
     #endif
     public let systemVersion: String
     
-    let appVsersion: String
-    let buildNumber: String
+    public let appVsersion: String
+    public let buildNumber: String
 }
