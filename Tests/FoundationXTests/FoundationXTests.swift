@@ -72,4 +72,12 @@ final class GHFoundationTests: XCTestCase {
         let chr: String = Character("H").stringValue
         XCTAssertEqual(chr, "H")
     }
+    
+    func testDeviceManager() throws {
+        #if os(macOS)
+        XLogger.printMessage(DeviceManager.shared.macAddresses, DeviceManager.shared.serialNumber)
+        XCTAssertTrue(DeviceManager.shared.macAddresses.count > 0)
+        XCTAssertTrue(DeviceManager.shared.serialNumber.count > 0)
+        #endif
+    }
 }
