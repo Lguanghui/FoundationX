@@ -13,7 +13,7 @@ import UIKit
 #endif
 
 public final class DeviceManager {
-    static let shared: DeviceManager = DeviceManager()
+    public static let shared: DeviceManager = DeviceManager()
     
     init() {
 #if os(macOS)
