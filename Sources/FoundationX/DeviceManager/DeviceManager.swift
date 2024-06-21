@@ -28,14 +28,23 @@ public final class DeviceManager {
         let infoDict = Bundle.main.infoDictionary
         appVsersion = infoDict?["CFBundleShortVersionString"] as? String ?? ""
         buildNumber = infoDict?["CFBundleVersion"] as? String ?? ""
+        appName = infoDict?["CFBundleDisplayName"] as? String ?? (infoDict?["CFBundleName"] as? String ?? "")
     }
     
     #if os(macOS)
+    /// device's mac addresses.
     public let macAddresses: [String]
+    /// device's serial number.
     public let serialNumber: String
     #endif
+    /// device's current system version. e.g. 17.5.1
     public let systemVersion: String
     
+    /// application's current version.
     public let appVsersion: String
+    /// application's current build number..
     public let buildNumber: String
+    
+    /// the name of current application.
+    public let appName: String
 }
