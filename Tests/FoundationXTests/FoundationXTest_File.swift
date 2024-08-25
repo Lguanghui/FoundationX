@@ -36,11 +36,11 @@ final class FoundationXTest_File: XCTestCase {
 
     func testNSURLFile() throws {
         let url = NSURL(fileURLWithPath: #file)
-        XLogger.printMessage("current test file size:", url.x_fileSize())
+        XLogger.log("current test file size:", url.x_fileSize())
     }
 
     func testApplicationSize() throws {
         let size = FileManager.default.applicationSize()
-        XLogger.printMessage(size)
+        XLogger.log(size)
     }
 }

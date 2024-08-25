@@ -9,10 +9,10 @@ final class GHFoundationTests: XCTestCase {
         // results.
         XCTAssert(lockFunc() != nil)
         XMethodLock(self, #selector(lockFunc))
-        XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
+        XLogger.log(XMethodIsLocked(self, #selector(lockFunc)))
         XCTAssert(lockFunc() == nil)
         XMethodUnlock(self, #selector(lockFunc))
-        XLogger.printMessage(XMethodIsLocked(self, #selector(lockFunc)))
+        XLogger.log(XMethodIsLocked(self, #selector(lockFunc)))
     }
 
     @objc func lockFunc() -> Any? {
@@ -23,28 +23,28 @@ final class GHFoundationTests: XCTestCase {
     }
 
     func testLogger() throws {
-        XLogger.printMessage("Hello!", "Logger")
+        XLogger.log("Hello!", "Logger")
         let obj = NSObject()
-        XLogger.printMessage("This is a message with my custom flags and my objc:", obj, flags: ["🍎", "🍊"])
+        XLogger.log("This is a message with my custom flags and my objc:", obj, flags: ["🍎", "🍊"])
     }
 
     func testMirror() throws {
         let str: String? = ""
         let _str: Any = str
-        XLogger.printMessage(Mirror.isOptional(_str))
+        XLogger.log(Mirror.isOptional(_str))
         let str_ = str!
-        XLogger.printMessage(Mirror.isOptional(str_))
+        XLogger.log(Mirror.isOptional(str_))
     }
 
     func testThen() throws {
         _ = NSObject().then { objc in
-            XLogger.printMessage(objc)
+            XLogger.log(objc)
         }
     }
     
     func testArraySafe() throws {
         let arr: [Int] = [0]
-        XLogger.printMessage(arr[safe: 100]) // output: nil
+        XLogger.log(arr[safe: 100]) // output: nil
     }
     
     func testStringIndex() throws {
@@ -53,7 +53,7 @@ final class GHFoundationTests: XCTestCase {
         XCTAssertNotNil("world"[0])
         XCTAssertEqual("world"[3].stringValue, "l")
         XCTAssertEqual("world"[3]?.stringValue, "l")
-        XLogger.printMessage("world"[1].stringValue)
+        XLogger.log("world"[1].stringValue)
     }
     
     func testTrim() throws {
@@ -75,7 +75,7 @@ final class GHFoundationTests: XCTestCase {
     
     func testDeviceManager() throws {
         #if os(macOS)
-        XLogger.printMessage(DeviceManager.shared.macAddresses, 
+        XLogger.log(DeviceManager.shared.macAddresses,
                              DeviceManager.shared.serialNumber,
                              DeviceManager.shared.appVsersion,
                              DeviceManager.shared.buildNumber,

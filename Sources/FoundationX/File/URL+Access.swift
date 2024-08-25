@@ -19,7 +19,7 @@ public extension URL {
             let bookmarkData = try self.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
             UserDefaults.standard.setValue(bookmarkData, forKey: key)
         } catch {
-            XLogger.printMessage("Failed to save bookmark data for \(self)", error)
+            XLogger.log("Failed to save bookmark data for \(self)", error)
         }
     }
 
@@ -38,7 +38,7 @@ public extension URL {
             }
             return false
         } catch {
-            XLogger.printMessage("Error resolving bookmark:", error)
+            XLogger.log("Error resolving bookmark:", error)
             return false
         }
     }

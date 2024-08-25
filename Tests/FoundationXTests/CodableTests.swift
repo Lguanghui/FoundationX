@@ -55,7 +55,7 @@ final class CodableTests: XCTestCase {
         """
         let jsonData = Data(jsonString.utf8)
         if let model = try? JSONDecoder().decode(TestModel.self, from: jsonData) {
-            XLogger.printMessage(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
+            XLogger.log(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
         }
     }
     
@@ -74,11 +74,11 @@ final class CodableTests: XCTestCase {
         let jsonData = Data(jsonString.utf8)
         let void: Void
         if let model = try? JSONDecoder().decode(Model.self, from: jsonData) {
-            XLogger.printMessage(model)
-            XLogger.printMessage(model.dict.rawValue)
-            XLogger.printMessage(model.desc.description)
-            XLogger.printMessage(AnyCodable(Void.self))
-            XLogger.printMessage(AnyCodable(void))
+            XLogger.log(model)
+            XLogger.log(model.dict.rawValue)
+            XLogger.log(model.desc.description)
+            XLogger.log(AnyCodable(Void.self))
+            XLogger.log(AnyCodable(void))
         }
     }
     

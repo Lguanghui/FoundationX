@@ -36,9 +36,9 @@ final class FoundationXTest_Optional: XCTestCase {
 
     func testOptional() throws {
         let str: String? = "123"
-        XLogger.printMessage(str.isNilOrEmpty)
+        XLogger.log(str.isNilOrEmpty)
         let arr: [Any]? = []
-        XLogger.printMessage(arr.isNilOrEmpty)
+        XLogger.log(arr.isNilOrEmpty)
     }
 
 }
