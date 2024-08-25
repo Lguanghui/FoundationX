@@ -31,7 +31,7 @@ jobs:
       - name: Test
         uses: actions/checkout@v1
       - run: swift test --enable-code-coverage
-      - uses: michaelhenry/swifty-code-coverage@v1.0.0
+      - uses: michaelhenry/swifty-code-coverage@v1.0.1
         with:
           build-path: .build
           target: FoundationXPackageTests.xctest
