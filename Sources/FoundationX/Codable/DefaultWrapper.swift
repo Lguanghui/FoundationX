@@ -10,7 +10,7 @@ import Foundation
 
 /// Implement this protocol to supply a default value for Codable when decode failed.
 public protocol CodableDefaultValue {
-    associatedtype Value: Codable
+    associatedtype Value: Codable & Sendable
     static var defaultValue: Value { get }
 }
 
@@ -23,7 +23,7 @@ public protocol BoolDefaultValue: CodableDefaultValue where Value == Bool { }
 ///
 /// `@CodableDefault<TYPE> var property`, when decoding fails, property will be set to the default value defined by `TYPE`.
 @propertyWrapper
-public struct CodableDefault<T: CodableDefaultValue>: Codable {
+public struct CodableDefault<T: CodableDefaultValue>: Codable, Sendable {
     
     public var wrappedValue: T.Value
     
