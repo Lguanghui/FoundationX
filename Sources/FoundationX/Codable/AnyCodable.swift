@@ -12,8 +12,8 @@
  - SeeAlso: `AnyDecodable`
  */
 #if swift(>=5.1)
-@frozen public struct AnyCodable: Codable {
-    public let value: Any
+@frozen public struct AnyCodable: Codable, Sendable {
+    public let value: Any & Sendable
 
     public init<T>(_ value: T?) {
         self.value = value ?? ()

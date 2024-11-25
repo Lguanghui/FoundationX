@@ -9,12 +9,12 @@
 import XCTest
 @testable import FoundationX
 
-fileprivate struct TestModel: Codable {
+fileprivate struct TestModel: Codable, Sendable {
     let scheme: String?
     let name: String?
 }
 
-struct Model: Codable {
+struct Model: Codable, Sendable {
     @DefaultTrue var bool: Bool
     @DefaultEmptyString var emptyStr: String
     var dict: [String: AnyCodable]
@@ -50,12 +50,12 @@ final class CodableTests: XCTestCase {
         let jsonString = """
         {
             "name": "Guanghui Liang",
-            "scheme": "https://liangguanghui.site"
+            "scheme": "https://liangguanghui.com"
         }
         """
         let jsonData = Data(jsonString.utf8)
         if let model = try? JSONDecoder().decode(TestModel.self, from: jsonData) {
-            XLogger.log(model) // output: TestModel(scheme: Optional("https://liangguanghui.site"), name: Optional("Guanghui Liang"))
+            XLogger.log(model) // output: TestModel(scheme: Optional("https://liangguanghui.com"), name: Optional("Guanghui Liang"))
         }
     }
     
@@ -63,7 +63,7 @@ final class CodableTests: XCTestCase {
         let jsonString = """
         {
             "name": "Guanghui Liang",
-            "scheme": "https://liangguanghui.site",
+            "scheme": "https://liangguanghui.com",
             "dict": {
                 "val": 1,
                 "name": "name"
