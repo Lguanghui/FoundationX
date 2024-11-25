@@ -39,8 +39,8 @@ import Foundation
      let dictionary = try! decoder.decode([String: AnyDecodable].self, from: json)
  */
 #if swift(>=5.1)
-@frozen public struct AnyDecodable: Decodable {
-    public let value: Any
+@frozen public struct AnyDecodable: Decodable, Sendable {
+    public let value: Any & Sendable
 
     public init<T>(_ value: T?) {
         self.value = value ?? ()
@@ -59,7 +59,7 @@ public struct AnyDecodable: Decodable {
 #if swift(>=4.2)
 @usableFromInline
 protocol _AnyDecodable {
-    var value: Any { get }
+    var value: Any & Sendable { get }
     init<T>(_ value: T?)
 }
 #else
