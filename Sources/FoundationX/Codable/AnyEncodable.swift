@@ -37,8 +37,8 @@ import Foundation
      let json = try! encoder.encode(dictionary)
  */
 #if swift(>=5.1)
-@frozen public struct AnyEncodable: Encodable {
-    public let value: Any
+@frozen public struct AnyEncodable: Encodable, Sendable {
+    public let value: Any & Sendable
 
     public init<T>(_ value: T?) {
         self.value = value ?? ()
@@ -57,7 +57,7 @@ public struct AnyEncodable: Encodable {
 #if swift(>=4.2)
 @usableFromInline
 protocol _AnyEncodable {
-    var value: Any { get }
+    var value: Any & Sendable { get }
     init<T>(_ value: T?)
 }
 #else
