@@ -9,13 +9,14 @@
 import Foundation
 
 public extension DispatchQueue {
-
+    @MainActor
     private static var _onceTracker = [String]()
 
     /// Swift's DispatchOnce implementation. It's Thread safe.
     /// - Parameters:
     ///   - token: A unique string.
     ///   - block: Block to execute once
+    @MainActor
     class func once(token: String, block: () -> Void ) {
         objc_sync_enter(self); defer { objc_sync_exit(self) }
 
