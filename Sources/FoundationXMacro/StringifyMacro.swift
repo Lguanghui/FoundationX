@@ -15,7 +15,7 @@ import SwiftSyntaxBuilder
 ///
 ///     #stringify(x + y, 1 + 2, 3 + 4)
 ///
-/// produces a tuple `"x + y 1 + 2 3 + 4"`.
+/// produces a string `"x + y 1 + 2 3 + 4"`.
 public struct StringifyMacro: ExpressionMacro {
     public static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
