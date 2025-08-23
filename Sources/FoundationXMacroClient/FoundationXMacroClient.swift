@@ -11,11 +11,11 @@ import FoundationX
 @main
 struct FoundationXMacroClient {
     static func main() {
-        
+        testStringifyMacro()
     }
 }
 
 func testStringifyMacro() {
-    let str = #stringify(1 + 2)
+    let str = #stringify(1 + 2, 3 + 4, 4 + 5)
     print(str)
 }

@@ -6,11 +6,11 @@
 //  Copyright © 2025 Guanghui Liang. All rights reserved.
 //
 
-/// A macro that produces both a value and a string containing the
-/// source code that generated the value. For example,
+/// A macro that creates a string value by joining the given parameters.
+/// For example,
 ///
-///     #stringify(x + y)
+///     #stringify(x + y, 1 + 2, 3 + 4)
 ///
-/// produces a tuple `(x + y, "x + y")`.
+/// produces a tuple `"x + y 1 + 2 3 + 4"`.
 @freestanding(expression)
-public macro stringify<T>(_ value: T) -> String = #externalMacro(module: "FoundationXMacro", type: "StringifyMacro")
+public macro stringify(_ value: Any...) -> String = #externalMacro(module: "FoundationXMacro", type: "StringifyMacro")

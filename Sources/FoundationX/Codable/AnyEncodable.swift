@@ -10,6 +10,8 @@
 import Foundation
 #endif
 
+public typealias AnySendable = Any & Sendable
+
 /**
  A type-erased `Encodable` value.
 
@@ -40,7 +42,7 @@ import Foundation
 @frozen public struct AnyEncodable: Encodable, Sendable {
     public let value: Any & Sendable
 
-    public init<T>(_ value: T?) {
+    public init<T: Sendable>(_ value: T?) {
         self.value = value ?? ()
     }
 }
@@ -120,9 +122,9 @@ extension _AnyEncodable {
         case let url as URL:
             try container.encode(url)
 #endif
-        case let array as [Any?]:
+        case let array as [(Any & Sendable)?]:
             try container.encode(array.map { AnyEncodable($0) })
-        case let dictionary as [String: Any?]:
+        case let dictionary as [String: AnySendable?]:
             try container.encode(dictionary.mapValues { AnyEncodable($0) })
         default:
             let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "AnyEncodable value cannot be encoded")

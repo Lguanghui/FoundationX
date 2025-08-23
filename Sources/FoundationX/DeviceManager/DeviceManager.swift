@@ -12,8 +12,7 @@ import Foundation
 import UIKit
 #endif
 
-@MainActor
-public final class DeviceManager {
+public final class DeviceManager: @unchecked Sendable {
     public static let shared: DeviceManager = DeviceManager()
     
     init() {

@@ -10,24 +10,21 @@ import SwiftSyntaxMacros
 import SwiftSyntax
 import SwiftSyntaxBuilder
 
-/// Implementation of the `stringify` macro, which takes an expression
-/// of any type and produces a tuple containing the value of that expression
-/// and the source code that produced the value. For example
+/// A macro that creates a string value by joining the given parameters.
+/// For example,
 ///
-///     #stringify(x + y)
+///     #stringify(x + y, 1 + 2, 3 + 4)
 ///
-///  will expand to
-///
-///     (x + y, "x + y")
+/// produces a tuple `"x + y 1 + 2 3 + 4"`.
 public struct StringifyMacro: ExpressionMacro {
     public static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) -> ExprSyntax {
-        guard let argument = node.arguments.first?.expression else {
-            fatalError("compiler bug: the macro does not have any arguments")
+        guard node.arguments.isEmpty == false else {
+            fatalError("compiler bug: the macro does not have any valid arguments.")
         }
-
-        return "\(argument)"
+        let string: String = node.arguments.compactMap({ "\($0.expression)" }).joined(separator: " ")
+        return "\(literal: string)"
     }
 }

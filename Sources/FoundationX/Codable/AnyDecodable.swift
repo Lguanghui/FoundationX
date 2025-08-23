@@ -42,7 +42,7 @@ import Foundation
 @frozen public struct AnyDecodable: Decodable, Sendable {
     public let value: Any & Sendable
 
-    public init<T>(_ value: T?) {
+    public init<T: Sendable>(_ value: T?) {
         self.value = value ?? ()
     }
 }
