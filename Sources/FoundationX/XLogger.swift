@@ -11,13 +11,13 @@ import Foundation
 import FoundationX_Objc
 #endif
 
-open class XLogger {
+public class XLogger: @unchecked Sendable {
     
     /// Whether to print in DEBUG mode only. Default is `true`.
-    public static var onlyDEBUG: Bool = true
+    public static let onlyDEBUG: Bool = true
     
     /// Whether to print your personal message in a new line. Default is `true`.
-    public static var newLineMode: Bool = true
+    public static let newLineMode: Bool = true
     
     init() { }
     
