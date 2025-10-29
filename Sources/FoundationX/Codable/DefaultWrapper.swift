@@ -98,6 +98,9 @@ public typealias DefaultFalse = CodableDefault<Bool.False>
 /// Modifies a variable of type Int, with a default value of 0.
 public typealias DefaultIntZero = CodableDefault<Int.Zero>
 
+/// Modifies a variable of type Int64, with a default value of 0.
+public typealias DefaultInt64Zero = CodableDefault<Int64.Zero>
+
 /// Decorate variables of type Float, with a default value of 0.
 public typealias DefaultFloatZero = CodableDefault<Float.Zero>
 
@@ -126,6 +129,12 @@ public extension Bool {
 public extension Int {
     enum Zero: CodableDefaultValue {
         public static var defaultValue: Int { return 0 }
+    }
+}
+
+public extension Int64 {
+    enum Zero: CodableDefaultValue {
+        public static var defaultValue: Int64 { return 0 }
     }
 }
 
