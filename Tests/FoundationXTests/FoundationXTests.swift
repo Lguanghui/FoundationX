@@ -73,6 +73,7 @@ final class GHFoundationTests: XCTestCase {
         XCTAssertEqual(chr, "H")
     }
     
+    @MainActor
     func testDeviceManager() throws {
         #if os(macOS)
         XLogger.log(DeviceManager.shared.macAddresses,
