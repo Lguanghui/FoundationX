@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="0.9.2"></a>
+## [0.9.2] - 2026-05-23
+
+<a name="0.9.1"></a>
+## [0.9.1] - 2026-05-23
+### Breaking Changes
+- package: Raise minimum platform targets
+
+
 <a name="0.9.0"></a>
 ## [0.9.0] - 2026-05-22
 ### Features
@@ -128,9 +137,6 @@
 - **objc:** add weak/strong type macro, NSString/NSArray/NSDictionary valid check macro
 
 
-<a name="0.2.4"></a>
-## [0.2.4] - 2023-03-25
-
 <a name="0.2.3"></a>
 ## [0.2.3] - 2023-03-25
 
@@ -142,9 +148,6 @@
 
 <a name="0.2.0"></a>
 ## [0.2.0] - 2023-03-24
-
-<a name="0.1.6"></a>
-## [0.1.6] - 2023-03-24
 
 <a name="0.1.5"></a>
 ## [0.1.5] - 2023-03-24
@@ -205,7 +208,9 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.0...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.2...HEAD
+[0.9.2]: https://github.com/Lguanghui/FoundationX/compare/0.9.1...0.9.2
+[0.9.1]: https://github.com/Lguanghui/FoundationX/compare/0.9.0...0.9.1
 [0.9.0]: https://github.com/Lguanghui/FoundationX/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/Lguanghui/FoundationX/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/Lguanghui/FoundationX/compare/0.7.0...0.7.1
@@ -218,13 +223,11 @@
 [0.3.2]: https://github.com/Lguanghui/FoundationX/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/Lguanghui/FoundationX/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/Lguanghui/FoundationX/compare/0.2.5...0.3.0
-[0.2.5]: https://github.com/Lguanghui/FoundationX/compare/0.2.4...0.2.5
-[0.2.4]: https://github.com/Lguanghui/FoundationX/compare/0.2.3...0.2.4
+[0.2.5]: https://github.com/Lguanghui/FoundationX/compare/0.2.3...0.2.5
 [0.2.3]: https://github.com/Lguanghui/FoundationX/compare/0.2.2...0.2.3
 [0.2.2]: https://github.com/Lguanghui/FoundationX/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/Lguanghui/FoundationX/compare/0.2.0...0.2.1
-[0.2.0]: https://github.com/Lguanghui/FoundationX/compare/0.1.6...0.2.0
-[0.1.6]: https://github.com/Lguanghui/FoundationX/compare/0.1.5...0.1.6
+[0.2.0]: https://github.com/Lguanghui/FoundationX/compare/0.1.5...0.2.0
 [0.1.5]: https://github.com/Lguanghui/FoundationX/compare/0.1.4...0.1.5
 [0.1.4]: https://github.com/Lguanghui/FoundationX/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/Lguanghui/FoundationX/compare/0.1.2...0.1.3
