@@ -29,7 +29,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Test
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - run: swift test --enable-code-coverage
       - uses: Lguanghui/swifty-code-coverage@1.0.0
         with:

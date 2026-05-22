@@ -1,28 +1,198 @@
-style: github
+bin: git
+style: ""
 template: CHANGELOG.tpl.md
 info:
   title: CHANGELOG
-  repository_url: yes
+  repository_url: https://github.com/Lguanghui/FoundationX
+
 options:
+  tag_filter_pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+  sort: date
+
   commits:
-    # filters:
-    #   Type:
-    #     - feat
-    #     - fix
-    #     - perf
-    #     - refactor
+    filters:
+      Type:
+        - 🎉
+        - 🔖
+        - ✨
+        - 🐛
+        - 📇
+        - 📚
+        - 💡
+        - 🐎
+        - 💄
+        - 🚨
+        - ✅
+        - ✔️
+        - ⚡
+        - 🎨
+        - 🔨
+        - 🔥
+        - 💚
+        - 🔒
+        - ⬆️
+        - ⬇️
+        - 👕
+        - 👽
+        - 📝
+        - 🚑
+        - 🚀
+        - 🍎
+        - 🐧
+        - 🏁
+        - 🚧
+        - 👷
+        - 📈
+        - ➖
+        - ➕
+        - 🐳
+        - 🔧
+        - 📦
+        - 🔀
+        - 💩
+        - ⏪
+        - 💥
+        - 👌
+        - ♿
+        - 🚚
+        - feat
+        - feature
+        - fix
+        - perf
+        - refactor
+        - docs
+    sort_by: Subject
+
   commit_groups:
-    # title_maps:
-    #   feat: Features
-    #   fix: Bug Fixes
-    #   perf: Performance Improvements
-    #   refactor: Code Refactoring
+    group_by: Type
+    sort_by: Title
+    title_order:
+      - 💥
+      - ✨
+      - 🐛
+      - 🚑
+      - 🔒
+      - 🐎
+      - ⚡
+      - 🎨
+      - 🔨
+      - 🔥
+      - 🚨
+      - ✅
+      - ✔️
+      - 📚
+      - 💡
+      - 📝
+      - 💄
+      - 📇
+      - 🔖
+      - 🎉
+      - 💚
+      - 👷
+      - 📈
+      - ➕
+      - ➖
+      - ⬆️
+      - ⬇️
+      - 🔧
+      - 📦
+      - 🐳
+      - 👕
+      - 👽
+      - 🚀
+      - 🍎
+      - 🐧
+      - 🏁
+      - 🚧
+      - 🔀
+      - ⏪
+      - 👌
+      - ♿
+      - 🚚
+      - 💩
+      - feat
+      - feature
+      - fix
+      - perf
+      - refactor
+      - docs
+    title_maps:
+      🎉: Initial Commits
+      🔖: Version Tags
+      ✨: Features
+      🐛: Bug Fixes
+      📇: Metadata
+      📚: Documentation
+      💡: Source Documentation
+      🐎: Performance Improvements
+      💄: Cosmetic Changes
+      🚨: Tests
+      ✅: Tests
+      ✔️: Passing Tests
+      ⚡: General Updates
+      🎨: Code Style
+      🔨: Refactoring
+      🔥: Removals
+      💚: Continuous Integration
+      🔒: Security
+      ⬆️: Dependency Upgrades
+      ⬇️: Dependency Downgrades
+      👕: Lint
+      👽: Translations
+      📝: Text
+      🚑: Critical Hotfixes
+      🚀: Deployments
+      🍎: macOS Fixes
+      🐧: Linux Fixes
+      🏁: Windows Fixes
+      🚧: Work in Progress
+      👷: Build System
+      📈: Analytics
+      ➖: Removed Dependencies
+      ➕: Added Dependencies
+      🐳: Docker
+      🔧: Configuration
+      📦: Package
+      🔀: Merges
+      💩: Bad Code
+      ⏪: Reverts
+      💥: Breaking Changes
+      👌: Code Review Changes
+      ♿: Accessibility
+      🚚: Moves
+      feat: Features
+      feature: Legacy Features
+      fix: Bug Fixes
+      perf: Performance Improvements
+      refactor: Refactoring
+      docs: Documentation
+
   header:
-    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern: "^([^\\s\\(:]+)(?:\\(([^\\)]*)\\))?(?::\\s+|\\s+)(.+)$"
     pattern_maps:
       - Type
       - Scope
       - Subject
+
+  issues:
+    prefix:
+      - "#"
+
+  refs:
+    actions:
+      - Closes
+      - Fixes
+
+  merges:
+    pattern: "^Merge branch '(\\w+)'$"
+    pattern_maps:
+      - Source
+
+  reverts:
+    pattern: "^Revert \"([\\s\\S]*)\"$"
+    pattern_maps:
+      - Header
+
   notes:
     keywords:
       - BREAKING CHANGE
