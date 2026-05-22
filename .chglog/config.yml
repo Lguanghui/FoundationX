@@ -168,7 +168,7 @@ options:
       docs: Documentation
 
   header:
-    pattern: "^([^\\s\\(:]+)(?:\\(([^\\)]*)\\))?(?::\\s+|\\s+)(.+)$"
+    pattern: "^([^\\s(:]+)(?:\\s*\\(?([^):\\s]+)?\\)?:\\s+|\\s+)(.+)$"
     pattern_maps:
       - Type
       - Scope

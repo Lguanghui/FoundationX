@@ -5,10 +5,17 @@ on:
     tags:
       - "**"
 
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-changelog
+  cancel-in-progress: false
+
 env:
   default_branch: master
-  skip_generate_pr: false
-  head_branch: ci_pull_request
+  head_branch: ci/changelog-${{ github.ref_name }}
 
 jobs:
   update_changelog:
@@ -16,51 +23,59 @@ jobs:
       runs-on: macos-latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
+          with:
+            ref: ${{ env.default_branch }}
+            fetch-depth: 0
         - name: Install git-chglog
           run: |
             brew tap git-chglog/git-chglog
             brew install git-chglog
-        - name: Checkout Branch
+        - name: Configure Git
           run: |
             git config --global push.autoSetupRemote true
-            git status
-            git fetch --all
-            git pull origin master
-            # git checkout -b $default_branch origin/$default_branch
-            # git pull -r
-            git checkout -b $head_branch
-        - name: Delete Remote Previous Head Branch for PR
+        - name: Checkout Changelog Branch
           run: |
-            if [[ `git ls-remote --heads origin $head_branch` ]]; then
-              git push origin --delete $head_branch
-            fi
+            git switch -c "$head_branch"
         - name: Generate CHANGELOG.md
           run: |
             git-chglog -o CHANGELOG.md
         - name: Commit & Push Changes
+          id: changes
           run: |
-            if [[ `git status --porcelain` ]]; then
-              git add --all
-              git commit -m "chore(ci): auto update CHANGELOG.md"
-              git push
-            else
-              skip_generate_pr=true
+            if [[ -z `git status --porcelain` ]]; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
               exit 0
             fi
+            git add CHANGELOG.md
+            git commit -m "chore(ci): auto update CHANGELOG.md"
+            git fetch origin "$head_branch":"refs/remotes/origin/$head_branch" || true
+            git push --force-with-lease origin HEAD:"$head_branch"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
         - name: Create Pull Request
-          if: ${{ env.skip_generate_pr }} == false
+          if: steps.changes.outputs.changed == 'true'
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-            gh pr create \
-              -B $default_branch \
-              --title '[CI] Auto Update CHANGELOG.md' \
-              --body 'Update report \
-                - CHANGELOG.md' \
-              -a Lguanghui \
-              -r Lguanghui \
-              -l [ci]auto_update
+            title="[CI] Auto Update CHANGELOG.md for ${{ github.ref_name }}"
+            body="Update report
+              - CHANGELOG.md
+              - Tag: ${{ github.ref_name }}"
+            if gh pr view "$head_branch" --json number >/dev/null 2>&1; then
+              gh pr edit "$head_branch" \
+                --title "$title" \
+                --body "$body" \
+                --add-label "[ci]auto_update"
+            else
+              gh pr create \
+                -B $default_branch \
+                -H "$head_branch" \
+                --title "$title" \
+                --body "$body" \
+                -a Lguanghui \
+                -r Lguanghui \
+                -l "[ci]auto_update"
+            fi
               
 #         deprecated due to `master` is a protected branch
 #         - name: Commit & Push changes
