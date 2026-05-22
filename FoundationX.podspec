@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
   spec.name         = "FoundationX"
   spec.version      = "0.8.0"
   spec.summary      = "A library for swift/objc effective codes. Use it to save your time."
-  spec.swift_version = '5.0'
+  spec.swift_version = '6.2'
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -54,10 +54,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "liangguanghui" => "liangguanghui1998@gmail.com" }
-  # Or just: spec.author    = "liangguanghui"
-  # spec.authors            = { "liangguanghui" => "liangguanghui@keep.com" }
-  # spec.social_media_url   = "https://twitter.com/liangguanghui"
+  spec.author             = { "liangguanghui" => "meetguanghuiliang@gmail.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

@@ -30,7 +30,7 @@ final class GHFoundationTests: XCTestCase {
 
     func testMirror() throws {
         let str: String? = ""
-        let _str: Any = str
+        let _str: Any = str as Any
         XLogger.log(Mirror.isOptional(_str))
         let str_ = str!
         XLogger.log(Mirror.isOptional(str_))
@@ -44,7 +44,7 @@ final class GHFoundationTests: XCTestCase {
     
     func testArraySafe() throws {
         let arr: [Int] = [0]
-        XLogger.log(arr[safe: 100]) // output: nil
+        XLogger.log(arr[safe: 100] as Any) // output: nil
     }
     
     func testStringIndex() throws {

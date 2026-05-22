@@ -17,18 +17,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "602.0.0-latest"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Macro implementation that performs the source transformation of a macro.
-        .macro(
-            name: "FoundationXMacro",
-            dependencies: [
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
-            ]
-        ),
         .target(
             name: "FoundationX_Objc",
             dependencies: [],
@@ -38,11 +29,10 @@ let package = Package(
         ),
         .target(
             name: "FoundationX",
-            dependencies: ["FoundationX_Objc", "FoundationXMacro"],
+            dependencies: ["FoundationX_Objc"],
             path: "Sources/FoundationX",
             swiftSettings: [.define("SPM_MODE")]
         ),
-        .executableTarget(name: "FoundationXMacroClient", dependencies: ["FoundationX"]),
         .testTarget(
             name: "FoundationXTests",
             dependencies: ["FoundationX"]),
