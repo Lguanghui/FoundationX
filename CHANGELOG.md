@@ -2,8 +2,14 @@
 ## [Unreleased]
 
 
+<a name="0.9.0"></a>
+## [0.9.0] - 2026-05-22
+
 <a name="0.8.0"></a>
 ## [0.8.0] - 2024-05-19
+### Chore
+- **ci:** auto update CHANGELOG.md ([#17](yes/issues/17))
+
 
 <a name="0.7.1"></a>
 ## [0.7.1] - 2024-02-25
@@ -198,7 +204,8 @@
 - add file
 
 
-[Unreleased]: yes/compare/0.8.0...HEAD
+[Unreleased]: yes/compare/0.9.0...HEAD
+[0.9.0]: yes/compare/0.8.0...0.9.0
 [0.8.0]: yes/compare/0.7.1...0.8.0
 [0.7.1]: yes/compare/0.7.0...0.7.1
 [0.7.0]: yes/compare/0.6.0...0.7.0
