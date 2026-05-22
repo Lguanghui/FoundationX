@@ -30,6 +30,9 @@ jobs:
     steps:
       - name: Test
         uses: actions/checkout@v3
+      - uses: maxim-lobanov/setup-swift@v1
+        with:
+          swift-version: '6.2.0'
       - run: swift test --enable-code-coverage
       - uses: Lguanghui/swifty-code-coverage@1.0.1
         with:
