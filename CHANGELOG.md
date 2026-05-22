@@ -2,6 +2,27 @@
 ## [Unreleased]
 
 
+<a name="0.9.3"></a>
+## [0.9.3] - 2026-05-23
+### Continuous Integration
+- **ci:** Update changelog PR workflow
+
+
+<a name="0.9.2"></a>
+## [0.9.2] - 2026-05-23
+### Documentation
+- **docs:** Expand README usage guide
+
+### Tests
+- **tests:** Add FoundationX coverage tests
+
+
+<a name="0.9.1"></a>
+## [0.9.1] - 2026-05-23
+### Breaking Changes
+- **package:** Raise minimum platform targets
+
+
 <a name="0.9.0"></a>
 ## [0.9.0] - 2026-05-22
 ### Features
@@ -17,10 +38,10 @@
 - Swift 6’s new concurrency feature adaptation.
 
 ### Removals
-- package: Remove Swift macro target
+- **package:** Remove Swift macro target
 
 ### Tests
-- tests: Run device manager test on main actor
+- **tests:** Run device manager test on main actor
 
 
 <a name="0.8.0"></a>
@@ -205,7 +226,10 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.0...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.3...HEAD
+[0.9.3]: https://github.com/Lguanghui/FoundationX/compare/0.9.2...0.9.3
+[0.9.2]: https://github.com/Lguanghui/FoundationX/compare/0.9.1...0.9.2
+[0.9.1]: https://github.com/Lguanghui/FoundationX/compare/0.9.0...0.9.1
 [0.9.0]: https://github.com/Lguanghui/FoundationX/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/Lguanghui/FoundationX/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/Lguanghui/FoundationX/compare/0.7.0...0.7.1
