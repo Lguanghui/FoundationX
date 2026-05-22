@@ -12,7 +12,7 @@ private struct DefaultsPayload: Codable, Sendable {
     @DefaultInt64Zero var largeCount: Int64
     @DefaultFloatZero var ratio: Float
     @DefaultDoubleZero var score: Double
-    @DefaultEmptyArray<Int> var items: [Int]
+    @DefaultEmptyArray var items: [Int]
     @DefaultEmptyDictionary<String, Int> var scores: [String: Int]
 }
 

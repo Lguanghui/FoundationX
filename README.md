@@ -87,7 +87,7 @@ struct User: Codable, Sendable {
     @DefaultEmptyString var name: String
     @DefaultTrue var isActive: Bool
     @DefaultIntZero var score: Int
-    @DefaultEmptyArray<String> var tags: [String]
+    @DefaultEmptyArray var tags: [String]
 }
 ```
 
