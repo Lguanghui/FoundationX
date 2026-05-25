@@ -16,6 +16,24 @@ private struct DefaultsPayload: Codable, Sendable {
     @DefaultEmptyDictionary<String, Int> var scores: [String: Int]
 }
 
+struct ValueGenerator: AsyncSequence, AsyncIteratorProtocol {
+    var current = 1
+
+    mutating func next() async -> Int? {
+        defer { current &*= 2 }
+
+        if current < 0 || current > 1024 {
+            return nil
+        } else {
+            return current
+        }
+    }
+
+    func makeAsyncIterator() -> ValueGenerator {
+        self
+    }
+}
+
 final class FoundationXCoverageTests: XCTestCase {
     func testCodableDefaultWrappersUseFallbacksAndConversions() throws {
         let json = """
@@ -177,5 +195,23 @@ final class FoundationXCoverageTests: XCTestCase {
 
         XCTAssertTrue(Mirror.isOptional(optional as Any))
         XCTAssertFalse(Mirror.isOptional(nonOptional))
+    }
+
+    func testAsyncSequenceCollectPreservesIterationOrder() async throws {
+        let stream = AsyncStream<Int> { continuation in
+            continuation.yield(1)
+            continuation.yield(2)
+            continuation.yield(3)
+            continuation.finish()
+        }
+
+        let values = try await stream.collect()
+
+        XCTAssertEqual(values, [1, 2, 3])
+        
+        let sequence = ValueGenerator()
+        let ints = try! await sequence.collect()
+        XCTAssertEqual(ints.count, 11)
+        
     }
 }
