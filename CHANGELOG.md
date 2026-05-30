@@ -2,6 +2,17 @@
 ## [Unreleased]
 
 
+<a name="0.9.4"></a>
+## [0.9.4] - 2026-05-31
+### Code Style
+- Simplify DefaultEmptyArray usage
+- rename objc target
+
+### Features
+- **asyncsequence:** Add collect helper
+- **FoundationX:** Export Objective-C module for SPM
+
+
 <a name="0.9.3"></a>
 ## [0.9.3] - 2026-05-23
 ### Continuous Integration
@@ -226,7 +237,8 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.3...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.4...HEAD
+[0.9.4]: https://github.com/Lguanghui/FoundationX/compare/0.9.3...0.9.4
 [0.9.3]: https://github.com/Lguanghui/FoundationX/compare/0.9.2...0.9.3
 [0.9.2]: https://github.com/Lguanghui/FoundationX/compare/0.9.1...0.9.2
 [0.9.1]: https://github.com/Lguanghui/FoundationX/compare/0.9.0...0.9.1
