@@ -7,5 +7,5 @@
 //
 
 #if SPM_MODE
-@_exported import FoundationX_Objc
+@_exported import FoundationXObjc
 #endif

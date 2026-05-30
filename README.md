@@ -181,7 +181,7 @@ func configureOnce() {
 
 ## Objective-C Helpers
 
-FoundationX also ships Objective-C headers through the `FoundationX_Objc` target.
+FoundationX also ships Objective-C headers through the `FoundationXObjc` target.
 
 ```objc
 #import <FoundationX/XCommonDefines.h>

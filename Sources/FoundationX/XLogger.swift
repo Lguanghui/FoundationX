@@ -8,7 +8,7 @@
 
 import Foundation
 #if SPM_MODE
-import FoundationX_Objc
+import FoundationXObjc
 #endif
 
 public class XLogger: @unchecked Sendable {

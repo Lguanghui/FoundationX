@@ -1,6 +1,6 @@
 import XCTest
 @testable import FoundationX
-@testable import FoundationX_Objc
+@testable import FoundationXObjc
 
 final class GHFoundationTests: XCTestCase {
     func testmMethodLock() throws {

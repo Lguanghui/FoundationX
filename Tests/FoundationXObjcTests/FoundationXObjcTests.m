@@ -10,7 +10,7 @@
 
 @import Foundation;
 @import FoundationX;
-@import FoundationX_Objc;
+@import FoundationXObjc;
 
 @interface FoundationXObjcTests : XCTestCase
 
