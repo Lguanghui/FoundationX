@@ -30,7 +30,9 @@ jobs:
         - name: Install git-chglog
           run: |
             brew tap git-chglog/git-chglog
-            brew install git-chglog
+            brew trust --formula git-chglog/git-chglog/git-chglog
+            brew install git-chglog/git-chglog/git-chglog
+            git-chglog --version
         - name: Configure Git
           run: |
             git config --global push.autoSetupRemote true
