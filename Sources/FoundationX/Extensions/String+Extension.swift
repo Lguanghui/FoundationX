@@ -11,10 +11,12 @@ import Foundation
 public extension String {
     /// Retrieve the character at a specific index from the string.
     subscript (_ index: Int) -> Character? {
-        guard isEmpty == false && index < count && index >= 0 else {
+        guard index >= 0,
+              let stringIndex = self.index(startIndex, offsetBy: index, limitedBy: endIndex),
+              stringIndex != endIndex else {
             return nil
         }
-        return self[self.index(self.startIndex, offsetBy: index)]
+        return self[stringIndex]
     }
 }
 
@@ -33,17 +35,17 @@ public extension String {
         guard var components: URLComponents = URLComponents(string: self) else {
             return self
         }
-        
+
         var queryItems = [URLQueryItem]()
         for (key, value) in dict {
             let item = URLQueryItem(name: key, value: value)
             queryItems.append(item)
         }
-        
+
         if let originalItems = components.queryItems {
             queryItems.append(contentsOf: originalItems)
         }
-        
+
         components.queryItems = queryItems
         return components.url?.absoluteString ?? self
     }

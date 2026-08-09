@@ -208,10 +208,9 @@ final class FoundationXCoverageTests: XCTestCase {
         let values = try await stream.collect()
 
         XCTAssertEqual(values, [1, 2, 3])
-        
+
         let sequence = ValueGenerator()
-        let ints = try! await sequence.collect()
+        let ints = try await sequence.collect()
         XCTAssertEqual(ints.count, 11)
-        
     }
 }

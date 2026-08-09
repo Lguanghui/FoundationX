@@ -10,33 +10,50 @@ import Foundation
 
 #if os(macOS)
 
+public enum SecurityScopedResourceError: Error {
+    case accessDenied(URL)
+}
+
 public extension URL {
-    
+
     /// Save the URL bookmark data with a specific key to access the file/folder.
     /// - Parameter key: UserDefaults key.
     func saveBookmarkData(for key: String) {
         do {
-            let bookmarkData = try self.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
-            UserDefaults.standard.setValue(bookmarkData, forKey: key)
+            let bookmarkData = try bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            UserDefaults.standard.set(bookmarkData, forKey: key)
         } catch {
             XLogger.log("Failed to save bookmark data for \(self)", error)
         }
     }
 
-    /// Restore the file/folder access from the bookmark data.
-    /// - Parameter key: UserDefaults key of the saved bookmark data.
-    /// - Returns: `True` if success, `False` otherwise.
+    /// Performs an operation while access to a security-scoped bookmark is active.
+    static func withSecurityScopedAccess<T>(forKey key: String, perform operation: (URL) throws -> T) throws -> T? {
+        guard let bookmark = UserDefaults.standard.data(forKey: key) else {
+            return nil
+        }
+
+        var isStale = false
+        let url = try URL(resolvingBookmarkData: bookmark, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+
+        if isStale {
+            let refreshedBookmark = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            UserDefaults.standard.set(refreshedBookmark, forKey: key)
+        }
+
+        guard url.startAccessingSecurityScopedResource() else {
+            throw SecurityScopedResourceError.accessDenied(url)
+        }
+        defer { url.stopAccessingSecurityScopedResource() }
+
+        return try operation(url)
+    }
+
+    /// Checks whether bookmark access can be started.
+    @available(*, deprecated, message: "Use withSecurityScopedAccess(forKey:perform:) to keep access active for the operation.")
     static func restoreFileAccess(key: String) -> Bool {
         do {
-            if let bookmark = UserDefaults.standard.object(forKey: key) as? Data {
-                var bookmarkDataIsStale = false
-                let url = try URL(resolvingBookmarkData: bookmark, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
-                guard url.startAccessingSecurityScopedResource() else {
-                    return false
-                }
-                return true
-            }
-            return false
+            return try withSecurityScopedAccess(forKey: key) { _ in true } ?? false
         } catch {
             XLogger.log("Error resolving bookmark:", error)
             return false

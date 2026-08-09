@@ -145,7 +145,7 @@ func printDeviceInfo() {
 
     XLogger.log(
         device.appName,
-        device.appVsersion,
+        device.appVersion,
         device.buildNumber,
         device.systemVersion
     )
@@ -158,14 +158,21 @@ On macOS, `DeviceManager` also exposes `macAddresses` and `serialNumber`.
 
 ```swift
 let fileSize = URL(fileURLWithPath: "/path/to/file").fileSize()
+
+#if os(iOS)
 let appSize = FileManager.default.applicationSize()
+#endif
 ```
+
+`applicationSize()` is available on iOS only.
 
 On macOS, security-scoped bookmarks can be saved and restored:
 
 ```swift
 url.saveBookmarkData(for: "selected-folder")
-let restored = URL.restoreFileAccess(key: "selected-folder")
+try URL.withSecurityScopedAccess(forKey: "selected-folder") { restoredURL in
+    // Read or write restoredURL while access is active.
+}
 ```
 
 ### Dispatch Once

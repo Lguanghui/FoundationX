@@ -109,12 +109,10 @@ extension AnyCodable: ExpressibleByDictionaryLiteral {}
 public extension Dictionary where Key == String, Value == AnyCodable {
     /// get `[String : Any]` from `[String : AnyCodable]`
     var rawValue: [String: Any] {
-        get {
-            var dict = [String: Any]()
-            for (key, value) in self {
-                dict[key] = value.value
-            }
-            return dict
+        var dict = [String: Any]()
+        for (key, value) in self {
+            dict[key] = value.value
         }
+        return dict
     }
 }

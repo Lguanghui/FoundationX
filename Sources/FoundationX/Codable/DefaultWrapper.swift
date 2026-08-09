@@ -24,18 +24,18 @@ public protocol BoolDefaultValue: CodableDefaultValue where Value == Bool { }
 /// `@CodableDefault<TYPE> var property`, when decoding fails, property will be set to the default value defined by `TYPE`.
 @propertyWrapper
 public struct CodableDefault<T: CodableDefaultValue>: Codable, Sendable {
-    
+
     public var wrappedValue: T.Value
-    
+
     public init(wrappedValue: T.Value) {
         self.wrappedValue = wrappedValue
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.wrappedValue = (try? container.decode(T.Value.self)) ?? T.defaultValue
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         try wrappedValue.encode(to: encoder)
     }
@@ -44,7 +44,7 @@ public struct CodableDefault<T: CodableDefaultValue>: Codable, Sendable {
 // MARK: - KeyedDecodingContainer extensions
 
 public extension KeyedDecodingContainer {
-    
+
     /// Default decode implementation for `CodableDefault`.
     ///
     /// When decode failed due to null value, it will turn to return a default value.
@@ -54,7 +54,7 @@ public extension KeyedDecodingContainer {
         }
         return CodableDefault(wrappedValue: T.defaultValue)
     }
-    
+
     /// Decode implementation for Bool.
     ///
     /// Compatible with integer and string type conversion to `Bool`.
@@ -71,16 +71,14 @@ public extension KeyedDecodingContainer {
             else {
                 return CodableDefault(wrappedValue: T.defaultValue)
             }
-            
+
             if let intVal = try? decodeIfPresent(Int.self, forKey: key) {
-                let num = NSNumber(integerLiteral: intVal)
+                let num = NSNumber(value: intVal)
                 return CodableDefault(wrappedValue: num.boolValue)
-            }
-            else if let strVal = try? decodeIfPresent(String.self, forKey: key),
+            } else if let strVal = try? decodeIfPresent(String.self, forKey: key),
                     let bool = Bool(strVal) {
                 return CodableDefault(wrappedValue: bool)
-            }
-            else {
+            } else {
                 return CodableDefault(wrappedValue: T.defaultValue)
             }
         }
@@ -115,7 +113,6 @@ public typealias DefaultEmptyArray<T> = CodableDefault<CodableEmptyArray<T>> whe
 
 /// Decorate a variable of type Dictionary, with a default value of `[:]`(empty dictionary).
 public typealias DefaultEmptyDictionary<K, V> = CodableDefault<CodableEmptyDictionary<K, V>> where K: Codable & Hashable, V: Codable
-
 
 public extension Bool {
     enum True: BoolDefaultValue {

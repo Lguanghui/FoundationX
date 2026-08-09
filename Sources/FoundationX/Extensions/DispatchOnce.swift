@@ -10,21 +10,17 @@ import Foundation
 
 public extension DispatchQueue {
     @MainActor
-    private static var _onceTracker = [String]()
+    private static var onceTokens = Set<String>()
 
-    /// Swift's DispatchOnce implementation. It's Thread safe.
+    /// Executes a block once for each token on the main actor.
     /// - Parameters:
     ///   - token: A unique string.
     ///   - block: Block to execute once
     @MainActor
-    class func once(token: String, block: () -> Void ) {
-        objc_sync_enter(self); defer { objc_sync_exit(self) }
-
-        if _onceTracker.contains(token) {
+    class func once(token: String, block: () -> Void) {
+        guard onceTokens.insert(token).inserted else {
             return
         }
-
-        _onceTracker.append(token)
         block()
     }
 }

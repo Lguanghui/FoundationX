@@ -9,35 +9,38 @@
 import Foundation
 
 public extension URL {
-    /// get file size with current URL. Return folder size by `directorySize()`, if it's a folder URL.
-    /// - Returns: file size in `Bytes`
+    /// Returns the file or directory size in bytes.
     func fileSize() -> UInt64 {
-        var isDirectory = ObjCBool(true)
-        FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
-        if isDirectory.boolValue {
-            return directorySize()
-        } else {
-            do {
-                let rawSize = try FileManager.default.attributesOfItem(atPath: path)[.size] as? NSNumber
-                return rawSize?.uint64Value ?? 0
-            } catch {
-                return 0
-            }
-        }
-    }
-    
-    /// get folder size with current.
-    /// - Returns: folder size in `Bytes`
-    func directorySize() -> UInt64 {
-        var totalSizeInBytes: UInt64 = 0
-        do {
-            let files: [URL] = try FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: [.localizedNameKey, .creationDateKey, .localizedTypeDescriptionKey], options: .skipsHiddenFiles)
-            for file in files {
-                totalSizeInBytes += file.fileSize()
-            }
-            return totalSizeInBytes
-        } catch {
+        var isDirectory = ObjCBool(false)
+        guard FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) else {
             return 0
         }
+
+        if isDirectory.boolValue {
+            return directorySize()
+        }
+
+        let values = try? resourceValues(forKeys: [.fileSizeKey])
+        return UInt64(values?.fileSize ?? 0)
+    }
+
+    /// Returns the allocated size of regular files in a directory hierarchy in bytes.
+    func directorySize() -> UInt64 {
+        let keys: Set<URLResourceKey> = [.isRegularFileKey, .isSymbolicLinkKey, .totalFileAllocatedSizeKey, .fileAllocatedSizeKey, .fileSizeKey]
+        let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants]
+        guard let enumerator = FileManager.default.enumerator(at: self, includingPropertiesForKeys: Array(keys), options: options) else {
+            return 0
+        }
+
+        var totalSizeInBytes: UInt64 = 0
+        for case let fileURL as URL in enumerator {
+            guard let values = try? fileURL.resourceValues(forKeys: keys), values.isRegularFile == true, values.isSymbolicLink != true else {
+                continue
+            }
+
+            let size = values.totalFileAllocatedSize ?? values.fileAllocatedSize ?? values.fileSize ?? 0
+            totalSizeInBytes += UInt64(size)
+        }
+        return totalSizeInBytes
     }
 }

@@ -1,5 +1,5 @@
 included:
-  - Source
+  - Sources
   - Tests
 excluded:
   - Carthage
@@ -7,3 +7,23 @@ excluded:
 opt_in_rules:
   - empty_count
   - force_unwrapping
+
+line_length:
+  warning: 160
+  error: 200
+
+cyclomatic_complexity:
+  warning: 25
+  error: 30
+
+function_body_length:
+  warning: 80
+  error: 100
+
+function_parameter_count:
+  warning: 8
+  error: 10
+
+type_name:
+  allowed_symbols:
+    - _

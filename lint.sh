@@ -1,7 +1,8 @@
 #!/bin/bash
-if which swiftlint >/dev/null; then
-  swiftlint --fix
-else
+set -euo pipefail
+
+if ! command -v swiftlint >/dev/null; then
   brew install swiftlint
-  swiftlint --fix
 fi
+
+swiftlint lint --strict --no-cache

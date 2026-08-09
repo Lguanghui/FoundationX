@@ -15,7 +15,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Cocoapods
         run: gem install cocoapods --no-document --quiet
@@ -28,11 +28,15 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - name: Test
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: swift-actions/setup-swift@v3
         with:
           swift-version: "6.2"
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Lint
+        run: swiftlint lint --strict --no-cache
       - run: swift test --enable-code-coverage
       - uses: Lguanghui/swifty-code-coverage@1.0.1
         with:

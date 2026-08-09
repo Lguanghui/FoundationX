@@ -15,12 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Swizzle)
 
 /// swizzle for `class` method
-/// @param origSelector original selector
+/// @param originalSelector original selector
 /// @param newSelector new selector
 + (void)swizzleClassMethod:(SEL)originalSelector withMethod:(SEL)newSelector;
 
 /// swizzle for `instance` method
-/// @param origSelector original selector
+/// @param originalSelector original selector
 /// @param newSelector new selector
 - (void)swizzleInstanceMethod:(SEL)originalSelector withMethod:(SEL)newSelector;
 

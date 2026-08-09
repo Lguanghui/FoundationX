@@ -9,13 +9,13 @@
 import Foundation
 
 public extension Array {
-    
+
     /// get element of array safely without 'out of bounds'.
     subscript (safe index: Int) -> Element? {
-        guard index >= 0,self.count > index else {
+        guard index >= 0, self.count > index else {
             return nil
         }
         return self[index]
     }
-    
+
 }

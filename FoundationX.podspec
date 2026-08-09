@@ -26,7 +26,8 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-                      A library for swift/objc effective codes.
+                      FoundationX provides reusable Swift and Objective-C utilities for Codable values,
+                      logging, file access, device metadata, and common Foundation workflows.
                    DESC
 
   spec.homepage     = "https://github.com/Lguanghui/FoundationX"

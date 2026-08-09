@@ -13,9 +13,9 @@ import UIKit
 #endif
 
 @MainActor
-public final class DeviceManager: @unchecked Sendable {
+public final class DeviceManager {
     public static let shared: DeviceManager = DeviceManager()
-    
+
     init() {
 #if os(macOS)
         macAddresses = Self.collectMACAddresses()
@@ -25,13 +25,13 @@ public final class DeviceManager: @unchecked Sendable {
 #else
         systemVersion = UIDevice.current.systemVersion
 #endif
-        
+
         let infoDict = Bundle.main.infoDictionary
-        appVsersion = infoDict?["CFBundleShortVersionString"] as? String ?? ""
+        appVersion = infoDict?["CFBundleShortVersionString"] as? String ?? ""
         buildNumber = infoDict?["CFBundleVersion"] as? String ?? ""
         appName = infoDict?["CFBundleDisplayName"] as? String ?? (infoDict?["CFBundleName"] as? String ?? "")
     }
-    
+
     #if os(macOS)
     /// device's mac addresses.
     public let macAddresses: [String]
@@ -40,12 +40,12 @@ public final class DeviceManager: @unchecked Sendable {
     #endif
     /// device's current system version. e.g. 17.5.1
     public let systemVersion: String
-    
-    /// application's current version.
-    public let appVsersion: String
+
+    /// The current application version.
+    public let appVersion: String
     /// application's current build number..
     public let buildNumber: String
-    
+
     /// the name of current application.
     public let appName: String
 }

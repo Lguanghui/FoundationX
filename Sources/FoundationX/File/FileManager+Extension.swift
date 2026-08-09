@@ -8,9 +8,9 @@
 
 import Foundation
 
+#if os(iOS)
 public extension FileManager {
-    /// get total disk space size used by current application
-    /// - Returns: disk space size in `Bytes`
+    /// Returns the disk space used by the current iOS application in bytes.
     func applicationSize() -> UInt64 {
         var totalSizeInBytes: UInt64 = 0
         if let documentURL = urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -19,9 +19,10 @@ public extension FileManager {
         if let cachesURL = urls(for: .cachesDirectory, in: .userDomainMask).first {
             totalSizeInBytes += cachesURL.fileSize()
         }
-        
+
         totalSizeInBytes += Bundle.main.bundleURL.fileSize()
-        
+
         return totalSizeInBytes
     }
 }
+#endif

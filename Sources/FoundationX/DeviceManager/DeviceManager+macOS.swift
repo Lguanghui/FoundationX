@@ -15,18 +15,19 @@ extension DeviceManager {
         guard let interfaces = SCNetworkInterfaceCopyAll() as? [SCNetworkInterface] else {
             return []
         }
-        
+
         return interfaces
             .map(SCNetworkInterfaceGetHardwareAddressString)
             .compactMap { $0 as String? }
     }
-    
+
     class func getSerialNumber() -> String? {
         let platformExpert = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
         if platformExpert != 0 {
-            let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString, kCFAllocatorDefault, 0).takeUnretainedValue() as? String
+            let serialNumberProperty = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString, kCFAllocatorDefault, 0)
+            let serialNumber = serialNumberProperty?.takeRetainedValue() as? String
             IOObjectRelease(platformExpert)
-            return serialNumberAsCFString
+            return serialNumber
         }
         return nil
     }
