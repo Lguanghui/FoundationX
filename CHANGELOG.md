@@ -2,6 +2,18 @@
 ## [Unreleased]
 
 
+<a name="0.10.1"></a>
+## [0.10.1] - 2026-08-09
+### Bug Fixes
+- fix CI error
+
+
+<a name="0.10.0"></a>
+## [0.10.0] - 2026-08-09
+### Refactoring
+- improve logging and foundation utilities
+
+
 <a name="0.9.4"></a>
 ## [0.9.4] - 2026-05-31
 ### Code Style
@@ -237,7 +249,9 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.9.4...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.10.1...HEAD
+[0.10.1]: https://github.com/Lguanghui/FoundationX/compare/0.10.0...0.10.1
+[0.10.0]: https://github.com/Lguanghui/FoundationX/compare/0.9.4...0.10.0
 [0.9.4]: https://github.com/Lguanghui/FoundationX/compare/0.9.3...0.9.4
 [0.9.3]: https://github.com/Lguanghui/FoundationX/compare/0.9.2...0.9.3
 [0.9.2]: https://github.com/Lguanghui/FoundationX/compare/0.9.1...0.9.2
