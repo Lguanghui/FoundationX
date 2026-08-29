@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.10.2"></a>
+## [0.10.2] - 2026-08-29
+### Features
+- add keychain foundations
+
+
 <a name="0.10.1"></a>
 ## [0.10.1] - 2026-08-09
 ### Bug Fixes
@@ -249,7 +255,8 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.10.1...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.10.2...HEAD
+[0.10.2]: https://github.com/Lguanghui/FoundationX/compare/0.10.1...0.10.2
 [0.10.1]: https://github.com/Lguanghui/FoundationX/compare/0.10.0...0.10.1
 [0.10.0]: https://github.com/Lguanghui/FoundationX/compare/0.9.4...0.10.0
 [0.9.4]: https://github.com/Lguanghui/FoundationX/compare/0.9.3...0.9.4
