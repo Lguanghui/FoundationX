@@ -20,7 +20,7 @@ Add FoundationX to your package dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Lguanghui/FoundationX.git", from: "0.9.0")
+    .package(url: "https://github.com/Lguanghui/FoundationX.git", from: "0.11.0")
 ]
 ```
 
@@ -153,6 +153,24 @@ func printDeviceInfo() {
 ```
 
 On macOS, `DeviceManager` also exposes `macAddresses` and `serialNumber`.
+
+### Foldable Devices (UIKit)
+
+```swift
+view.addInteraction(FoldableDeviceInteraction { [weak self] isFoldable in
+    self?.updateModeControls(isFoldable: isFoldable)
+})
+```
+
+The interaction detects UIKit hinge capability instead of matching a Duo model name or
+checking the current navigation-bar orientation. Closed, partially open, and fully open
+hinges all count as foldable. The initial value is `false`; the callback reports changes
+once the view joins a window. Detached updates are ignored, and reattachment resumes
+observation. Capture the owning controller weakly because the view retains the interaction.
+
+Hinge observation requires the iOS 27.1 SDK (Swift 6.4 toolchain) and iOS 27.1 or later.
+Older toolchains and systems retain `false`. This capability also applies to future devices
+that expose the same API; it is not a guarantee about unreleased product names.
 
 ### File Utilities
 
