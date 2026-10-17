@@ -1,46 +1,52 @@
 name: Create Release
 
 on:
-  pull_request:
-    types:
-        - closed
-    branches:
-      - master
-    paths:
-      - 'CHANGELOG.md'
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   create_release:
     name: Create Release
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: "Determine tag"
+        uses: actions/checkout@v4
+      - name: Verify changelog is included in the tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          git fetch --all
-          RELEASE_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          echo $RELEASE_TAG
-          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
-
-      - name: "Create release"
-        uses: "actions/github-script@v6"
+          if ! grep -Fxq "<a name=\"$RELEASE_TAG\"></a>" CHANGELOG.md; then
+            echo "::error::CHANGELOG.md is missing $RELEASE_TAG. Create release tags with bump-my-version bump."
+            exit 1
+          fi
+      - name: Create release
+        uses: actions/github-script@v6
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const tag = context.ref.replace('refs/tags/', '');
+            const { owner, repo } = context.repo;
             try {
-              const response = await github.rest.repos.createRelease({
-                draft: false,
-                generate_release_notes: true,
-                name: process.env.RELEASE_TAG,
-                owner: context.repo.owner,
-                prerelease: false,
-                repo: context.repo.repo,
-                tag_name: process.env.RELEASE_TAG,
-              });
-
-              core.exportVariable('RELEASE_ID', response.data.id);
-              core.exportVariable('RELEASE_UPLOAD_URL', response.data.upload_url);
+              await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+              core.info(`Release ${tag} already exists.`);
+              return;
             } catch (error) {
-              core.setFailed(error.message);
+              if (error.status !== 404) throw error;
             }
+            await github.rest.repos.createRelease({
+              owner,
+              repo,
+              tag_name: tag,
+              name: tag,
+              draft: false,
+              prerelease: false,
+              generate_release_notes: true,
+            });

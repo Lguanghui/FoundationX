@@ -254,6 +254,43 @@ Run CocoaPods lint:
 pod lib lint --allow-warnings
 ```
 
+### Releasing
+
+Install `git-chglog` and Bump My Version **0.27.0 or later**. Older versions
+(including 0.11.0) do not support the required hooks and must be upgraded.
+For example, in your Python environment:
+
+```sh
+python3 -m pip install --upgrade 'bump-my-version>=0.27.0'
+brew install git-chglog/git-chglog/git-chglog
+bump-my-version --version
+```
+
+From a clean checkout with the latest release history and tags fetched, run:
+
+```sh
+git fetch origin --tags
+bump-my-version bump patch
+```
+
+Use `minor` or `major` instead of `patch` as appropriate. The command updates
+the version, generates `CHANGELOG.md` for the upcoming tag, commits both, and
+creates the tag. Use this command instead of a bare `git tag` to include the
+changelog in the tagged commit. A dry run (`bump-my-version bump --dry-run patch`)
+does not modify files or execute the changelog hook.
+
+Publish the release commit through the normal branch/PR process. If `master`
+requires a PR, merge the release commit before pushing its tag. Then push the
+specific tag (replace `0.11.1` with the version you just created):
+
+```sh
+git push origin 0.11.1
+```
+
+The tag push creates the GitHub Release directly, without a separate changelog
+PR. The workflow verifies that the tag contains its changelog entry and safely
+skips an already-created Release on reruns.
+
 ## License
 
 FoundationX is available under the MIT license. See [LICENSE](LICENSE) for details.
