@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="0.11.0"></a>
+## [0.11.0] - 2026-10-17
+### Features
+- Add foldable device capability observation
+
+### Version Tags
+- Release FoundationX 0.11.0
+
+
 <a name="0.10.2"></a>
 ## [0.10.2] - 2026-08-29
 ### Features
@@ -255,7 +264,8 @@
 - add file
 
 
-[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.10.2...HEAD
+[Unreleased]: https://github.com/Lguanghui/FoundationX/compare/0.11.0...HEAD
+[0.11.0]: https://github.com/Lguanghui/FoundationX/compare/0.10.2...0.11.0
 [0.10.2]: https://github.com/Lguanghui/FoundationX/compare/0.10.1...0.10.2
 [0.10.1]: https://github.com/Lguanghui/FoundationX/compare/0.10.0...0.10.1
 [0.10.0]: https://github.com/Lguanghui/FoundationX/compare/0.9.4...0.10.0
